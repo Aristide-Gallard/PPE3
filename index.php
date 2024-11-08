@@ -8,5 +8,3 @@ if(!isset($_REQUEST['uc']))
      $uc = 'accueil';
 else
 	$uc = $_REQUEST['uc'];
-
-    
