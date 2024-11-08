@@ -47,4 +47,13 @@ class PdoMudry
 		}
 		return PdoMudry::$monPdoMudry;  
 	}
+
+/**
+ * Retourne tous les avions sous forme d'un tableau associatif
+ *
+ * @return// le tableau associatif des avions 
+*/
+    public static function getFlotte(){
+
+    }
 }
