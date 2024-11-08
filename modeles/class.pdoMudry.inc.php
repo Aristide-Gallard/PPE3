@@ -11,7 +11,7 @@
  *
 */
 
-class pdoMudry
+class PdoMudry
 {
     private static $serveur = "mysql:host=localhost";
     private static $bdd = "mudry";
@@ -19,4 +19,32 @@ class pdoMudry
     private static $mdp='toor' ;
 	private static $monPdo;
 	private static $monPdoMudry = null;
+
+    /**
+ * Constructeur privé, crée l'instance de PDO qui sera sollicitée
+ * pour toutes les méthodes de la classe
+ */				
+	private function __construct()
+	{
+    		PdoMudry::$monPdo = new PDO(PdoMudry::$serveur.';'.PdoMudry::$bdd, PdoMudry::$user, PdoMudry::$mdp); 
+			PdoMudry::$monPdo->query("SET CHARACTER SET utf8");
+	}
+	public function _destruct(){
+		PdoMudry::$monPdo = null;
+	}
+
+    /**
+ * Fonction statique qui crée l'unique instance de la classe
+ *
+ * Appel : $instancePdoJardiPlants = PdoJardiPlants::getPdoJardiPlants();
+ * @return// l'unique objet de la classe PdoJardiPlants
+ */
+	public  static function getPdoJardiPlants()
+	{
+		if(PdoMudry::$monPdoMudry == null)
+		{
+			PdoMudry::$monPdoMudry= new PdoMudry();
+		}
+		return PdoMudry::$monPdoMudry;  
+	}
 }
