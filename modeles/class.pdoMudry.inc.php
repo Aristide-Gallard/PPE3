@@ -49,11 +49,26 @@ class PdoMudry
 	}
 
 /**
- * Retourne tous les avions sous forme d'un tableau associatif
+ * Retourne tous les modeles sous forme d'un tableau associatif
  *
  * @return// le tableau associatif des avions 
 */
     public static function getModeles(){
-
+        $req = "SELECT modele.Id_MODELE, modele.libelle, modele.nbSiege, personnel.Id_PERSONNEL, personnel.tel,associe.nombre FROM associe INNER JOIN modele ON associe.Id_MODELE = modele.Id_MODELE INNER JOIN personnel ON associe.Id_PERSONNEL = personnel.Id_PERSONNEL";
+        $res = PdoMudry::$monPdo->query($req);
+        return $res->fetchAll();
     }
+
+/**
+ * Retourne tous les avions sous forme d'un tableau associatif
+ *
+ * @return// le tableau associatif des avions 
+*/
+    public static function getAvions(){
+        $req = "SELECT avion.Id_AVION, avion.code, avion.numSerie, modele.Id_MODELE, modele.libelle FROM avion 
+INNER JOIN modele ON avion.Id_MODELE = modele.Id_MODELE";
+        $res = PdoMudry::$monPdo->query($req);
+        return $res->fetchAll();
+    }
+
 }
