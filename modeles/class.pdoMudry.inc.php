@@ -39,7 +39,7 @@ class PdoMudry
  * Appel : $instancePdoJardiPlants = PdoJardiPlants::getPdoJardiPlants();
  * @return// l'unique objet de la classe PdoJardiPlants
  */
-	public  static function getPdoJardiPlants()
+	public  static function getPdoMudry()
 	{
 		if(PdoMudry::$monPdoMudry == null)
 		{
