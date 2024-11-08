@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once("modele/class.pdoMudry.inc.php");
-require_once("modele/fonctions.inc.php");
+require_once("modeles/class.pdoMudry.inc.php");
+require_once("modeles/fonctions.inc.php");
 
 if(!isset($_REQUEST['uc']))
      $uc = 'accueil';
@@ -13,4 +13,6 @@ switch($uc)
 {
      case 'accueil':
           {include("vues/v_accueil.php");break;}
+     case 'Personnel':
+           {include("vues/v_Personnel.php");break;}
 }
