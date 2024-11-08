@@ -53,7 +53,7 @@ class PdoMudry
  *
  * @return// le tableau associatif des avions 
 */
-    public static function getFlotte(){
+    public static function getModeles(){
 
     }
 }

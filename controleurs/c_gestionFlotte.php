@@ -3,7 +3,7 @@
 $action = $_REQUEST['action'];
 switch($action)
 {
-    case 'voirAvions':
+    case 'voirModeles':
         {
             
             break;
