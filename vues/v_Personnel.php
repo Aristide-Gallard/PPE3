@@ -7,38 +7,50 @@
     <link rel="stylesheet" href="design.css" />
 </head>
 <body>
-    <form action="index.php?uc=creerPersonnel&action=creerPersonnel" method="post">
-        <p><H1>Liste des personnels</H1><br>
+    <h1>Liste des personnels</h1>
 
-        <table border=3 cellspacing=1 >
+    <!-- Tableau des personnels -->
+    <?php if (isset($LesPersonnels) && !empty($LesPersonnels)): ?>
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th>Téléphone :</th>
-                </tr> 
-            </thead>
-        <?php
-       
-        if (isset($lesPersonnels) && !empty($lesPersonnels)) {
-            foreach ($lesPersonnels as $unPersonnel) {
-                $tel = $unPersonnel['tel']; 
-                ?>
-                <tr>
-                    <td width=150><?php echo($tel); ?></td>
-                    <td width=30><a href="index.php?uc=modifierPersonnel&action=modificationPersonnel&num=<?php echo htmlspecialchars($unPersonnel['id_PERSONNEL']); ?>"><img src="images/modifier.gif" title="Modifier"></a></td>
-                    <td width=30><a href="index.php?uc=supprimerPersonnel&action=suppressionPersonnel&num=<?php echo htmlspecialchars($unPersonnel['id_PERSONNEL']); ?>"><img src="images/supp.png" title="Supprimer"></a></td>
+                    <th scope="col">#</th>
+                    <th scope="col">Téléphone</th>
+                    <th scope="col">Actions</th>
+                    <th scope="col">Actions</th>
                 </tr>
+            </thead>
+            <tbody>
                 <?php
-            }
-        } else {
-            echo "<tr><td>Aucun personnel disponible.</td></tr>";
-        }
-        ?>
+                foreach ($LesPersonnels as $unPersonnel):
+                    $tel = ($unPersonnel['tel']); 
+                    $id = ($unPersonnel['Id_PERSONNEL']); 
+                   
+                ?>
+                    <tr>
+                        <td><?php echo $id; ?></td>
+                        <td><?php echo $tel; ?></td>
+                        <td>
+                            <a href="index.php?uc=modifierPersonnel&action=modificationPersonnel&num=<?php echo $idPersonnel; ?>">
+                                <img src="images/modifier.gif" title="Modifier">
+                            </a>
+                </td>
+                <td>
+                            <a href="index.php?uc=supprimerPersonnel&action=suppressionPersonnel&num=<?php echo $idPersonnel; ?>">
+                                <img src="images/supp.png" title="Supprimer">
+                            </a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
         </table>
-        </br>
-        <form action="index.php?uc=creerPersonnel&action=creerPersonnel" method="get">
-    <input type="submit" value="Créer un nouveau personnel">
-</form>
+    <?php else: ?>
+        <p>Aucun personnel disponible.</p>
+    <?php endif; ?>
 
-    </form>
+    <a href="index.php?uc=Personnel&action=creationPersonnel">créer personnel</a>
+    <!-- Formulaire pour créer un nouveau personnel -->
+   
+
 </body>
 </html>

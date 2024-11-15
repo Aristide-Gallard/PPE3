@@ -76,5 +76,28 @@ INNER JOIN modele ON avion.Id_MODELE = modele.Id_MODELE";
         $res = PdoMudry::$monPdo->query($req);
         return $res->fetchAll();
     }
+    /**
+ * Retourne tous les modeles sous forme d'un tableau associatif
+ *
+ * @return// le tableau associatif des avions 
+*/
+public static function getlesPersonnels(){
+    $req = "SELECT * FROM personnel";
+    $res = PdoMudry::$monPdo->query($req);
+    $lesLignes = $res->fetchAll();
+    return $lesLignes;
+}
+/**
+ * Créer un Personnel 
+ *
+ * Créer un personnel à partir des arguments validés passés en paramètre
+*/
+public function creerPersonnel($tel)
+{
+    $res = getPdoMudry::$monPdo->prepare('INSERT INTO personnel (tel, 
+        ) VALUES( :tel');
+    $res->bindValue('tel',$tel, PDO::PARAM_STR);
+    $res->execute();
+}
 
 }

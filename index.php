@@ -19,5 +19,5 @@ switch($uc)
           {include("controleurs/c_gestionFlotte.php");break;}
           
      case 'Personnel':
-           {include("vues/v_Personnel.php");break;}
+           {include("controleurs/c_gestionPersonnel.php");break;}
 }
