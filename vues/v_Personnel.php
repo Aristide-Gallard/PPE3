@@ -1,6 +1,5 @@
 <?php
 
-foreach( $creerPersonnel as $unPersonnel) 
 {
 	$id_Personnel = $unPersonnel['id_Personnel'];
 	$tel = $unPersonnel['tel'];

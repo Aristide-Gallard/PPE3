@@ -50,7 +50,7 @@ class PdoMudry
     public function getLesPersonnels()
 	{
 		$req = "select * from personnel";
-		$res = PdoTransNat::$monPdo->query($req);
+		$res = PdoMudry::$monPdo->query($req);
 		$lesLignes = $res->fetchAll();
 		return $lesLignes;
 	}
@@ -88,12 +88,12 @@ class PdoMudry
 		$res->bindValue('tel', $tel, PDO::PARAM_STR);   
 		$res->execute();
 	}
-	}
+	
 	public function supressionPersonnel($id_Personnel)
 {
 	$res = PdoTransNat::$monPdo->prepare('DELETE from Personnel WHERE id_PERSONNEL=:id_Personnel');
 	$res->bindValue(':id_PERSONNEL', $id_Personnel, PDO::PARAM_INT);
 	$res->execute();
 }
-
+}
 
