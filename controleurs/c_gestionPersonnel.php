@@ -2,20 +2,20 @@
 	$action=$_REQUEST['action'];
 	switch($action)
 	{
-		case 'CreerPersonnel':
+		case 'creationPersonnel':
 		{
-			include("vues/v_Personnel.php");
+			include("vues/v_creationPersonnel.php");
 			break;
 		}
-		case 'confirmCreatPersonnel':
+		case 'confirmCreatCLient':
 		{
-			$id_Personnel = $unPersonnel['id_PERSONNEL'];
-            $tel = $unPersonnel['tel'];
-            $pdo->creerPersonnel($id_Personnel,$tel);
+			
+			$tel = $_POST['Ttel'];
+			$pdo->creerPersonnel($tel);
 			
 			//soit ce code :
 			$lesClients = $pdo->getLesPersonnels();
-			include("vues/v_???.php");	
+			include("vues/v_personnel.php");	
 			
 			// ou ce code :
 			//header('Location: index.php');	

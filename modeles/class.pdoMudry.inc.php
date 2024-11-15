@@ -1,4 +1,5 @@
 <?php
+
 /** 
  * Classe d'accès aux données. 
  
@@ -26,7 +27,11 @@ class PdoMudry
  */				
 	private function __construct()
 	{
-    		PdoMudry::$monPdo = new PDO(PdoMudry::$serveur.';'.PdoMudry::$bdd, PdoMudry::$user, PdoMudry::$mdp); 
+		if ($_SERVER['SERVER_NAME'] == 'localhost')
+		{PdoMudry::$monPdo = new PDO(PdoMudry::$serveur.';'.PdoMudry::$bdd, PdoMudry::$user, PdoMudry::$mdp);}
+		else
+		{PdoMudry::$monPdo=new PDO ('mysql:host=db672809001.db.1and1.com;dbname=db672809001', 'dbo672809001','$siQU3N9Lp2SiJKRX^');}
+
 			PdoMudry::$monPdo->query("SET CHARACTER SET utf8");
 	}
 	public function _destruct(){
@@ -47,43 +52,37 @@ class PdoMudry
 		}
 		return PdoMudry::$monPdoMudry;  
 	}
-    public function getLesPersonnels()
-	{
-		$req = "select * from personnel";
-		$res = PdoMudry::$monPdo->query($req);
-		$lesLignes = $res->fetchAll();
-		return $lesLignes;
-	}
-	public function getLeClient($num)
-	{
-		$req = "select * from personnel WHERE id_PERSONNEL =".$id_PERSONNEL;
-		$res = PdoTransNat::$monPdo->query($req);
-		$lesLignes = $res->fetch();
-		return $lesLignes;
-	}
+
+    public function getLesPersonnels() {
+        
+        $query = "SELECT * FROM personnels"; 
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); 
+    
 
 /**
 
- * Crée une commande 
+ * Crée un personnel
  *
- * Crée une commande à partir des arguments validés passés en paramètre, l'identifiant est
+ * Crée une personnel à partir des arguments validés passés en paramètre, l'identifiant est
  * construit à partir du maximum existant ; crée les lignes de commandes dans la table contenir à partir du
- * tableau d'idProduit passé en paramètre
+ * tableau d'id_Personnel passé en paramètre
  * @param $id_PERSONNEL 
  * @param $tel
 */
-	public function creerPersonnel($id_Personnel,$tel)
+	public function creerPersonnel($tel)
 	{
-		$res = PdoTransNat::$monPdo->prepare('INSERT INTO Personnel (id_PERSONNEL,tel) VALUES(  
-			:id_PERSONNEL, :tel )');
-		$res->bindValue('id_PERSONNEL',$id_Personnel, PDO::PARAM_STR);
+		$res = PdoMudry::$monPdo->prepare('INSERT INTO Personnel (tel) VALUES(  
+			 :tel )');
+		
 		$res->bindValue('tel', $tel, PDO::PARAM_STR);   
 		$res->execute();
 	}
-	public function modificationPersonnel($id_Personnel,$tel)
+	public function modificationPersonnel($tel)
 	{
-		$res = PdoTransNat::$monPdo->prepare('DELETE Personnel (id_PERSONNEL,tel) VALUES(  
-			:id_PERSONNEL, :tel)');
+		$res = PdoMudry::$monPdo->prepare('UPDATE Personnel (tel) VALUES(  
+			 :tel)');
 		$res->bindValue('id_PERSONNEL',$id_Personnel, PDO::PARAM_STR);
 		$res->bindValue('tel', $tel, PDO::PARAM_STR);   
 		$res->execute();
@@ -91,9 +90,9 @@ class PdoMudry
 	
 	public function supressionPersonnel($id_Personnel)
 {
-	$res = PdoTransNat::$monPdo->prepare('DELETE from Personnel WHERE id_PERSONNEL=:id_Personnel');
+	$res = PdoMudry::$monPdo->prepare('DELETE from Personnel WHERE id_PERSONNEL=:id_Personnel');
 	$res->bindValue(':id_PERSONNEL', $id_Personnel, PDO::PARAM_INT);
 	$res->execute();
 }
 }
-
+}
