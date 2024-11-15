@@ -32,7 +32,7 @@ class PdoMudry
 		else
 		{PdoMudry::$monPdo=new PDO ('mysql:host=db672809001.db.1and1.com;dbname=db672809001', 'dbo672809001','$siQU3N9Lp2SiJKRX^');}
 
-			PdoMudry::$monPdo->query("SET CHARACTER SET utf8");
+		PdoMudry::$monPdo->query("SET CHARACTER SET utf8");
 	}
 	public function _destruct(){
 		PdoMudry::$monPdo = null;
@@ -53,45 +53,28 @@ class PdoMudry
 		return PdoMudry::$monPdoMudry;  
 	}
 
-    public function getLesPersonnels()
-    {    
-        $query = "SELECT * FROM personnel"; 
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC); 
-    }
 /**
-
- * Crée un personnel
+ * Retourne tous les modeles sous forme d'un tableau associatif
  *
- * Crée une personnel à partir des arguments validés passés en paramètre, l'identifiant est
- * construit à partir du maximum existant ; crée les lignes de commandes dans la table contenir à partir du
- * tableau d'id_Personnel passé en paramètre
- * @param $id_PERSONNEL 
- * @param $tel
+ * @return// le tableau associatif des avions 
 */
-	public function creerPersonnel($tel)
-	{
-		$res = PdoMudry::$monPdo->prepare('INSERT INTO Personnel (tel) VALUES(  
-			 :tel )');
-		
-		$res->bindValue('tel', $tel, PDO::PARAM_STR);   
-		$res->execute();
-	}
-	public function modificationPersonnel($tel)
-	{
-		$res = PdoMudry::$monPdo->prepare('UPDATE Personnel (tel) VALUES(  
-			 :tel)');
-		$res->bindValue('id_PERSONNEL',$id_Personnel, PDO::PARAM_STR);
-		$res->bindValue('tel', $tel, PDO::PARAM_STR);   
-		$res->execute();
-	}
-	
-	public function supressionPersonnel($id_Personnel)
-{
-	$res = PdoMudry::$monPdo->prepare('DELETE from Personnel WHERE id_PERSONNEL=:id_Personnel');
-	$res->bindValue(':id_PERSONNEL', $id_Personnel, PDO::PARAM_INT);
-	$res->execute();
-}
+    public static function getModeles(){
+        $req = "SELECT * FROM modele";
+        $res = PdoMudry::$monPdo->query($req);
+        $lesLignes = $res->fetchAll();
+		return $lesLignes;
+    }
+
+/**
+ * Retourne tous les avions sous forme d'un tableau associatif
+ *
+ * @return// le tableau associatif des avions 
+*/
+    public static function getAvions(){
+        $req = "SELECT avion.Id_AVION, avion.code, avion.numSerie, modele.Id_MODELE, modele.libelle FROM avion 
+INNER JOIN modele ON avion.Id_MODELE = modele.Id_MODELE";
+        $res = PdoMudry::$monPdo->query($req);
+        return $res->fetchAll();
+    }
 
 }
