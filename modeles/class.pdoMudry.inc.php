@@ -14,7 +14,7 @@
 class PdoMudry
 {
     private static $serveur = "mysql:host=localhost";
-    private static $bdd = "mudry";
+    private static $bdd = "dbname=mudry";
     private static $user='root' ;    		
     private static $mdp='toor' ;
 	private static $monPdo;
