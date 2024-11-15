@@ -14,7 +14,7 @@
 class PdoMudry
 {
     private static $serveur = "mysql:host=localhost";
-    private static $bdd = "mudry";
+    private static $bdd = "dbname=mudry";
     private static $user='root' ;    		
     private static $mdp='toor' ;
 	private static $monPdo;
@@ -58,9 +58,10 @@ class PdoMudry
  * @return// le tableau associatif des avions 
 */
     public static function getModeles(){
-        $req = "SELECT modele.Id_MODELE, modele.libelle, modele.nbSiege, personnel.Id_PERSONNEL, personnel.tel,associe.nombre FROM associe INNER JOIN modele ON associe.Id_MODELE = modele.Id_MODELE INNER JOIN personnel ON associe.Id_PERSONNEL = personnel.Id_PERSONNEL";
+        $req = "SELECT * FROM modele";
         $res = PdoMudry::$monPdo->query($req);
-        return $res->fetchAll();
+        $lesLignes = $res->fetchAll();
+		return $lesLignes;
     }
 
 /**
