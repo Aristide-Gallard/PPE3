@@ -31,7 +31,7 @@ class PdoMudry
 		else
 		{PdoMudry::$monPdo=new PDO ('mysql:host=db672809001.db.1and1.com;dbname=db672809001', 'dbo672809001','$siQU3N9Lp2SiJKRX^');}
 
-			PdoMudry::$monPdo->query("SET CHARACTER SET utf8");
+		PdoMudry::$monPdo->query("SET CHARACTER SET utf8");
 	}
 	public function _destruct(){
 		PdoMudry::$monPdo = null;
@@ -51,4 +51,29 @@ class PdoMudry
 		}
 		return PdoMudry::$monPdoMudry;  
 	}
+
+/**
+ * Retourne tous les modeles sous forme d'un tableau associatif
+ *
+ * @return// le tableau associatif des avions 
+*/
+    public static function getModeles(){
+        $req = "SELECT * FROM modele";
+        $res = PdoMudry::$monPdo->query($req);
+        $lesLignes = $res->fetchAll();
+		return $lesLignes;
+    }
+
+/**
+ * Retourne tous les avions sous forme d'un tableau associatif
+ *
+ * @return// le tableau associatif des avions 
+*/
+    public static function getAvions(){
+        $req = "SELECT avion.Id_AVION, avion.code, avion.numSerie, modele.Id_MODELE, modele.libelle FROM avion 
+INNER JOIN modele ON avion.Id_MODELE = modele.Id_MODELE";
+        $res = PdoMudry::$monPdo->query($req);
+        return $res->fetchAll();
+    }
+
 }
