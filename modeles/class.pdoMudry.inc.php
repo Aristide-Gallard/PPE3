@@ -15,7 +15,7 @@
 class PdoMudry
 {
     private static $serveur = "mysql:host=localhost";
-    private static $bdd = "mudry";
+    private static $bdd = "dbname=mudry";
     private static $user='root' ;    		
     private static $mdp='toor' ;
 	private static $monPdo;
@@ -53,14 +53,13 @@ class PdoMudry
 		return PdoMudry::$monPdoMudry;  
 	}
 
-    public function getLesPersonnels() {
-        
-        $query = "SELECT * FROM personnels"; 
+    public function getLesPersonnels()
+    {    
+        $query = "SELECT * FROM personnel"; 
         $stmt = $this->pdo->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC); 
-    
-
+    }
 /**
 
  * Crée un personnel
@@ -94,5 +93,5 @@ class PdoMudry
 	$res->bindValue(':id_PERSONNEL', $id_Personnel, PDO::PARAM_INT);
 	$res->execute();
 }
-}
+
 }

@@ -7,13 +7,15 @@
     <link rel="stylesheet" href="design.css" />
 </head>
 <body>
-    <form action="index.php?uc=creerPersonnel&action=creationPersonnel" method="post">
+    <form action="index.php?uc=creerPersonnel&action=creerPersonnel" method="post">
         <p><H1>Liste des personnels</H1><br>
 
         <table border=3 cellspacing=1 >
-            <tr>
-                <td>Téléphone :</td>
-            </tr> 
+            <thead>
+                <tr>
+                    <th>Téléphone :</th>
+                </tr> 
+            </thead>
         <?php
        
         if (isset($lesPersonnels) && !empty($lesPersonnels)) {
@@ -21,20 +23,22 @@
                 $tel = $unPersonnel['tel']; 
                 ?>
                 <tr>
-                    <td width=150><?php echo htmlspecialchars($tel); ?></td>
+                    <td width=150><?php echo($tel); ?></td>
                     <td width=30><a href="index.php?uc=modifierPersonnel&action=modificationPersonnel&num=<?php echo htmlspecialchars($unPersonnel['id_PERSONNEL']); ?>"><img src="images/modifier.gif" title="Modifier"></a></td>
                     <td width=30><a href="index.php?uc=supprimerPersonnel&action=suppressionPersonnel&num=<?php echo htmlspecialchars($unPersonnel['id_PERSONNEL']); ?>"><img src="images/supp.png" title="Supprimer"></a></td>
                 </tr>
                 <?php
             }
         } else {
-            echo "<tr><td colspan='3'>Aucun personnel disponible.</td></tr>";
+            echo "<tr><td>Aucun personnel disponible.</td></tr>";
         }
         ?>
         </table>
         </br>
+        <form action="index.php?uc=creerPersonnel&action=creerPersonnel" method="get">
+    <input type="submit" value="Créer un nouveau personnel">
+</form>
 
-        <input type="submit" value="Créer un nouveau personnel">
     </form>
 </body>
 </html>
