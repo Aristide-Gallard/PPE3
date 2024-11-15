@@ -94,8 +94,7 @@ public static function getlesPersonnels(){
 */
 public function creerPersonnel($tel)
 {
-    $res = getPdoMudry::$monPdo->prepare('INSERT INTO personnel (tel, 
-        ) VALUES( :tel');
+    $res = getPdoMudry::$monPdo->prepare('INSERT INTO personnel (telP) VALUES( :tel');
     $res->bindValue('tel',$tel, PDO::PARAM_STR);
     $res->execute();
 }
