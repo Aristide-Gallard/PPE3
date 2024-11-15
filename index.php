@@ -9,6 +9,7 @@ if(!isset($_REQUEST['uc']))
 else
 	$uc = $_REQUEST['uc'];
 
+$pdo = PdoMudry::getPdoMudry() ;
 switch($uc)
 {
      case 'accueil':
