@@ -26,7 +26,11 @@ class PdoMudry
  */				
 	private function __construct()
 	{
-    		PdoMudry::$monPdo = new PDO(PdoMudry::$serveur.';'.PdoMudry::$bdd, PdoMudry::$user, PdoMudry::$mdp); 
+		if ($_SERVER['SERVER_NAME'] == 'localhost')
+		{PdoMudry::$monPdo = new PDO(PdoMudry::$serveur.';'.PdoMudry::$bdd, PdoMudry::$user, PdoMudry::$mdp);}
+		else
+		{PdoMudry::$monPdo=new PDO ('mysql:host=db672809001.db.1and1.com;dbname=db672809001', 'dbo672809001','$siQU3N9Lp2SiJKRX^');}
+
 			PdoMudry::$monPdo->query("SET CHARACTER SET utf8");
 	}
 	public function _destruct(){
