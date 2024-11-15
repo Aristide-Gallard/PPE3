@@ -5,7 +5,8 @@ switch($action)
 {
     case 'voirModeles':
         {
-            
+            $modeles = $pdo->getModeles();
+            include('vues/v_modeles.php');
             break;
         }
 }
