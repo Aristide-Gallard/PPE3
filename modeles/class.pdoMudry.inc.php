@@ -72,7 +72,7 @@ public static function getMouvements(){
  *
  * @return// le tableau associatif des aéroports 
 */
-public static function getAeroport(){
+public static function getAeroports(){
 	$req = "SELECT aeroport.Id_AEROPORT, aeroport.aita, aeroport.nom, aeroport.latitude, aeroport.longitude FROM aeroport";
 
 	$res = PdoMudry::$monPdo->query($req);
@@ -104,5 +104,6 @@ INNER JOIN modele ON avion.Id_MODELE = modele.Id_MODELE";
         $res = PdoMudry::$monPdo->query($req);
         return $res->fetchAll();
     }
+
 
 }

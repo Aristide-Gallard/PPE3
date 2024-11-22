@@ -39,7 +39,7 @@ switch($action)
 
     case 'gererAeroport':
         {
-
+            $aeroports = $pdo->getAeroports();
             include('vues/v_gestionAeroport.php');
             break;
         }

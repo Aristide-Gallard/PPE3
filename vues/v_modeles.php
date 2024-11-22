@@ -1,5 +1,6 @@
 <div id="modeles">
-    Ceci est l'affichage des modeles
+<a href="index.php?uc=accueil" class="button">Retour</a>
+Ceci est l'affichage des modeles
     <a href="index.php?uc=flotte&action=voirModeles">voirModeles</a>
     <table class="table table-striped table-hover">
         <thead>

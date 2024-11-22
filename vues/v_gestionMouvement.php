@@ -1,6 +1,6 @@
-<div id="gestionAeroport">
+<div id="gestionMouvement">
+<a href="index.php?uc=accueil" class="button">Retour</a>
 Ceci est la gestion des vols
-<a href="index.php?uc=vol&action=gestionVol">Gestion Vol</a>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,8 +31,8 @@ Ceci est la gestion des vols
             <?php if (!empty($mouvements)): ?>
                 <?php foreach ($mouvements as $mouvement): ?>
                     <tr>
-                        <td><?= htmlspecialchars($mouvement['nbPlace']) ?></td>
                         <td><?= htmlspecialchars($mouvement['numV']) ?></td>
+                        <td><?= htmlspecialchars($mouvement['nbPlace']) ?></td>
                         <td><?= htmlspecialchars($mouvement['distance']) ?></td>
                         <td><?= htmlspecialchars($mouvement['heureD']) ?></td>
                         <td><?= htmlspecialchars($mouvement['duree']) ?></td>
