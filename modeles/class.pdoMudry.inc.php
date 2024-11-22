@@ -29,7 +29,7 @@ class PdoMudry
 		if ($_SERVER['SERVER_NAME'] == 'localhost')
 		{PdoMudry::$monPdo = new PDO(PdoMudry::$serveur.';'.PdoMudry::$bdd, PdoMudry::$user, PdoMudry::$mdp);}
 		else
-		{PdoMudry::$monPdo=new PDO ('mysql:host=db672809001.db.1and1.com;dbname=db672809001', 'dbo672809001','$siQU3N9Lp2SiJKRX^');}
+		{PdoMudry::$monPdo=new PDO ('mysql:host=localhost;dbname=mudry', 'root','toor');}
 
 			PdoMudry::$monPdo->query("SET CHARACTER SET utf8");
 	}
@@ -50,5 +50,17 @@ class PdoMudry
 			PdoMudry::$monPdoMudry= new PdoMudry();
 		}
 		return PdoMudry::$monPdoMudry;  
+	}
+	function connecter($identifiant,$mdp)
+	{
+		$req = PdoMudry::$monPdo -> prepare("SELECT * FROM profil WHERE identifiant = :videntifiant");
+		$req->bindValue("videntifiant", $identifiant);
+		$req->execute();
+		foreach($req as $ligne)
+		{
+			return ($ligne['mdp']==$mdp);
+		}
+	
+		return false;
 	}
 }

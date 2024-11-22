@@ -1,5 +1,5 @@
 <div id="connexion">
-<form method="POST" action="index.php?uc=seconnecter&action=confirmerConnexion">
+<form method="POST" action="index.php?uc=connexion&action=confirmerConnexion">
    <fieldset>
      <legend>Connexion</legend>
 		<p>

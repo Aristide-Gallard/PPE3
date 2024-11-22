@@ -14,4 +14,6 @@ switch($uc)
 {
      case 'accueil':
           {include("vues/v_accueil.php");break;}
+     case 'connexion':
+          {include("controleurs/c_gestionConnexion.php");break;}
 }

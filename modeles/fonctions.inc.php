@@ -1,6 +1,7 @@
-<php
+<?php
 
-function getErreursSaisieConnexion($identifiant, $mdp){
+function getErreursSaisieConnexion($identifiant, $mdp)
+{
 	$lesErreurs = array();
 	if($identifiant=="")
 	{
@@ -8,7 +9,7 @@ function getErreursSaisieConnexion($identifiant, $mdp){
 	}
 	if($mdp=="")
 	{
-	$lesErreurs[]="Il faut saisir le champ mdp";
+		$lesErreurs[]="Il faut saisir le champ mdp";
 	}
 
 	return $lesErreurs;

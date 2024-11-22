@@ -16,8 +16,9 @@ switch($action)
         $msgErreurs = getErreursSaisieConnexion($_POST['identifiant'], $_POST['mdp']);
         if ($msgErreurs==null) {
             if ($pdo->connecter($_POST['identifiant'], $_POST['mdp'])){
+                echo "Bienvenue ",$_POST['identifiant']," avec le mot de passe : ",$_POST['mdp'];
             }else{
-                $msgErreurs[] = "Erreur de login";
+                echo "Erreur de login";
             }
         }else{
 			echo "Erreur de login";
