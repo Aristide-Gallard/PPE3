@@ -15,11 +15,26 @@
 			break;
 		}
 		case 'confirmCreatPersonnel':
-			{
-			$tel = $_REQUEST['tel'];
-			$pdo->creerPersonnel($tel);
-			}
 
+			{
+			$tel = $_POST['tel'];
+			$pdo->creerPersonnel($tel);
+			$LesPersonnels = $pdo->getlesPersonnels();
+			include("vues/v_Personnel.php");
+
+			}
+		case 'supressionPersonnel':
+		{
+			include("vues/v_Personnel.php");
+			
+			break;
+		}
+		case 'confirmSupprClient':
+		{
+			echo "confirmation suppr";
+			$pdo->supressionPersonnel($num);
+			include("vues/v_Personnel.php");
+		}
 	}
 	
 ?>

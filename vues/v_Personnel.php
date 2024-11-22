@@ -4,7 +4,7 @@
 <head>
     <title>Liste Personnel</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" href="design.css" />
+    <link rel="stylesheet" href="" />
 </head>
 <body>
     <h1>Liste des personnels</h1>
@@ -31,12 +31,12 @@
                         <td><?php echo $id; ?></td>
                         <td><?php echo $tel; ?></td>
                         <td>
-                            <a href="index.php?uc=modifierPersonnel&action=modificationPersonnel&num=<?php echo $idPersonnel; ?>">
+                            <a href="index.php?uc=Personnel&action=modificationPersonnel&num=<?php echo $id; ?>">
                                 <img src="images/modifier.gif" title="Modifier">
                             </a>
                 </td>
                 <td>
-                            <a href="index.php?uc=supprimerPersonnel&action=suppressionPersonnel&num=<?php echo $idPersonnel; ?>">
+                            <a href="index.php?uc=Personnel&action=suppressionPersonnel&num=<?php echo $id; ?>">
                                 <img src="images/supp.png" title="Supprimer">
                             </a>
                         </td>

@@ -94,9 +94,15 @@ public static function getlesPersonnels(){
 */
 public function creerPersonnel($tel)
 {
-    $res = getPdoMudry::$monPdo->prepare('INSERT INTO personnel (telP) VALUES( :tel');
-    $res->bindValue('tel',$tel, PDO::PARAM_STR);
+    $sql = 'INSERT INTO personnel (tel) VALUES (:tel)';
+    $res = PdoMudry::$monPdo->prepare($sql);
+    $res->bindValue(':tel', $tel, PDO::PARAM_STR);
     $res->execute();
 }
-
+public function supressionPersonnel($num)
+{
+	$res = PdoMudry::$monPdo->prepare('DELETE from personnel WHERE id_PERSONNEL = :num');
+	$res->bindValue('num', $num, PDO::PARAM_INT);
+	$res->execute();
+}
 }
