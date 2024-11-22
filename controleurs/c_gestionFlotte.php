@@ -19,4 +19,14 @@ switch ($action) {
         include('vues/v_modeles.php');
         break;
     }
+    case 'supprimerModele': {
+        $idModele = $_REQUEST['id'];
+        $modele = $pdo->getModele($idModele);
+        include('vues/v_supprModele.php');
+        break;
+    }
+    case 'confirmSupprModele': {
+        $idModele = $_POST['id'];
+        $pdo->supprModele($idModele);
+    }
 }

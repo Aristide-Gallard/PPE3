@@ -131,6 +131,18 @@ FROM modele rp WHERE rp.id_MODELE = :id_modele";
 
 	}
 
+	/**
+	 * supprime un modele
+	 *
+	 */
+	public static function supprModele($id)
+	{
+		$req = "DELETE FROM modele WHERE Id_MODELE = :ID_MODELE";
+		$res = PdoMudry::$monPdo->prepare($req);
+		$res->bindValue("ID_MODELE", $id);
+		$res->execute();
+	}
+
 
 	/**
 	 * Retourne tous les avions sous forme d'un tableau associatif
