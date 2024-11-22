@@ -53,6 +53,35 @@ class PdoMudry
 	}
 
 /**
+ * Retourne tous les mouvements sous forme d'un tableau associatif
+ *
+ * @return// le tableau associatif des mouvements 
+*/
+public static function getMouvements(){
+	$req = "SELECT mouvement.Id_MOUVEMENT, mouvement.nbPlace, mouvement.numV, mouvement.distance, mouvement.heureD, mouvement.duree, mouvement.heureA, mouvement.Id_AEROPORT, mouvement.Id_AEROPORT_1, mouvement.Id_AVION FROM mouvement 
+	INNER JOIN aeroport ON mouvement.Id_AEROPORT = aeroport.Id_AEROPORT
+	INNER JOIN avion ON mouvement.Id_AVION = avion.Id_AVION";
+	
+	$res = PdoMudry::$monPdo->query($req);
+	return $res->fetchAll();
+}
+
+
+/**
+ * Retourne tous les aéroports sous forme d'un tableau associatif
+ *
+ * @return// le tableau associatif des aéroports 
+*/
+public static function getAeroport(){
+	$req = "SELECT aeroport.Id_AEROPORT, aeroport.aita, aeroport.nom, aeroport.latitude, aeroport.longitude FROM aeroport";
+
+	$res = PdoMudry::$monPdo->query($req);
+	return $res->fetchAll();
+}
+
+
+
+/**
  * Retourne tous les modeles sous forme d'un tableau associatif
  *
  * @return// le tableau associatif des avions 
