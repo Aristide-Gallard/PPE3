@@ -28,16 +28,17 @@
 		{
 			$num=$_REQUEST['num'];
 			echo $num;
-			
+			$LesPersonnels = $pdo->getlesPersonnels();
+			include("vues/v_SupprPersonnel.php");
 			
 			break;
 		}
-		case 'confirmSupprClient':
+		case 'confirmSupprPersonnel':
 		{
 			$num=$_REQUEST['num'];
 			echo "confirmation suppr";
 			$pdo->supressionPersonnel($num);
-			include("vues/v_SupprPersonnel.php");
+			include("vues/v_Personnel.php");
 			break;
 		}
 	}

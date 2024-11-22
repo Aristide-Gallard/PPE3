@@ -8,8 +8,8 @@
     </head>
 	<?php
 
-             $id = $unPersonnel['Id_PERSONNEL'];
-            $tel = $unPersonnel['tel']; 
+             $id = $LesPersonnels['Id_PERSONNEL'];
+            $tel = $LesPersonnels['tel']; 
             echo $num;
            ?>
 			

@@ -36,7 +36,7 @@
                             </a>
                 </td>
                 <td>
-                            <a href="index.php?uc=Personnel&action=confirmSupprPersonnel&num=<?php echo $id; ?>">
+                            <a href="index.php?uc=Personnel&action=supressionPersonnel&num=<?php echo $id; ?>">
                                 <img src="images/supp.png" title="Supprimer">
                             </a>
                         </td>

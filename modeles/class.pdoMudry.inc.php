@@ -87,6 +87,14 @@ public static function getlesPersonnels(){
     $lesLignes = $res->fetchAll();
     return $lesLignes;
 }
+public static function getlePersonnel(){
+    $req = "SELECT * FROM personnel WHERE id_PERSONNEL = :num";
+    $res = PdoMudry::$monPdo->query($req);
+    $lesPersonnels = $res->fetchAll();
+    $lesLignes = $res->fetchAll();
+    $res->execute();
+    return $lesLignes;
+}
 /**
  * Créer un Personnel 
  *
