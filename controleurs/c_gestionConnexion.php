@@ -5,10 +5,15 @@ switch($action)
 {
     case 'seConnecter':
     {
-        $identifiant='';
-        $mdp='';
-        include("vues/v_connexion.php");
-        break;
+        if (isset($_SESSION['id'])){
+            echo 'Vous etes deja connecte';
+        }
+        else{
+            $identifiant='';
+            $mdp='';
+            include("vues/v_connexion.php");
+            break;
+        }
     }
 
     case 'confirmerConnexion':
@@ -17,11 +22,12 @@ switch($action)
         if ($msgErreurs==null) {
             if ($pdo->connecter($_POST['identifiant'], $_POST['mdp'])){
                 echo "Bienvenue ",$_POST['identifiant']," avec le mot de passe : ",$_POST['mdp'];
+                $_SESSION["id"]=$_POST['identifiant'];
             }else{
                 echo "Erreur de login";
             }
         }else{
-			echo "Erreur de login";
+			echo $msgErreurs;
 		}
         break;
     }
