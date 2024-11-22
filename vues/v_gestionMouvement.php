@@ -10,7 +10,7 @@ Ceci est la gestion des vols
 <body>
 
 <div class="container mt-5">
-    <h2>Liste des vols</h2>
+    <h2>Liste des vols <a href=index.php?uc=vol&action=ajouterMouvement><img src="Images/boutonAjouter.jpg" height = 35 px></a></h2>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -40,8 +40,8 @@ Ceci est la gestion des vols
                         <td><?= htmlspecialchars($mouvement['Id_AEROPORT']) ?></td>
                         <td><?= htmlspecialchars($mouvement['Id_AEROPORT_1']) ?></td>
                         <td><?= htmlspecialchars($mouvement['Id_AVION']) ?></td>
-
-
+                        <td><li><a href=index.php?uc=vol&action=modifierMouvement><img src="" height = 35 px></a></li></td>
+                        <td><li><a href=index.php?uc=vol&action=ajouterMouvement><img src="" height = 35 px></a></li></td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
