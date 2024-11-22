@@ -21,19 +21,24 @@
 			$pdo->creerPersonnel($tel);
 			$LesPersonnels = $pdo->getlesPersonnels();
 			include("vues/v_Personnel.php");
+			break;
 
 			}
 		case 'supressionPersonnel':
 		{
-			include("vues/v_Personnel.php");
+			$num=$_REQUEST['num'];
+			echo $num;
+			
 			
 			break;
 		}
 		case 'confirmSupprClient':
 		{
+			$num=$_REQUEST['num'];
 			echo "confirmation suppr";
 			$pdo->supressionPersonnel($num);
-			include("vues/v_Personnel.php");
+			include("vues/v_SupprPersonnel.php");
+			break;
 		}
 	}
 	
