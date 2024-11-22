@@ -16,4 +16,6 @@ switch($uc)
           {include("vues/v_accueil.php");break;}
      case 'connexion':
           {include("controleurs/c_gestionConnexion.php");break;}
+     case 'equipage' :
+          {include("controleurs/c_gestionEquipage.php");break;}
 }
