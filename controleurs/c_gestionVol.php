@@ -15,8 +15,16 @@ switch($action)
 
     case 'ajouterMouvement':
         {
-
-            include('vues/v_ajouterMouvement.php');
+            $numero ='';
+            $nbPlaces ='';
+            $distance ='';
+            $duree = '';
+            $heureD = '';
+            $heureA = '';
+            $lesAeroports = $pdo->getAeroports();
+            $lesAeroports = $pdo->getAeroports();
+            $lesAvions = $pdo->getAvions();
+            include('vues/v_ajoutMouvement.php');
             break;
         }
 
