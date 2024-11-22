@@ -10,8 +10,13 @@ else
 	$uc = $_REQUEST['uc'];
 
 $pdo = PdoMudry::getPdoMudry() ;
+
 switch($uc)
 {
      case 'accueil':
           {include("vues/v_accueil.php");break;}
+     case 'flotte':
+          {include("controleurs/c_gestionFlotte.php");break;}
+     case 'vol':
+          {include("controleurs/c_gestionVol.php");break;}
 }
