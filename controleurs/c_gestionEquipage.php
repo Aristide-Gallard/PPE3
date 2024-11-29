@@ -25,6 +25,18 @@ switch($action)
 
     case 'ajouterAEquipage':
     {
+        $present='';
+        $LesMouvements = $pdo->getMouvements();
+        $LesRoles = $pdo->getRoles();
+        $LesPersonnels = $pdo->getPersonnels();
+        include("vues/v_ajouterAEquipage.php");
+        break;
+    }
+    case 'confirmerAjoutEquipage':
+    {
+        $confirmerAjout = $pdo->ajoutEquipage($_POST['mouvement'], $_POST['personnel'], $_POST['present'], $_POST['role']);
+        $LesEquipages = $pdo->getEquipages();
+        include("vues/v_Equipage.php");
         break;
     }
     case 'modifierAEquipage':

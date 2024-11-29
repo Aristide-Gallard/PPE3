@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-
+<a href="index.php?uc=accueil">Retour</a>
 <head>
     <title>Liste equipages</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -8,6 +8,12 @@
 </head>
 <body>
     <h1>Liste des equipages</h1>
+        <a href="index.php?uc=equipage&action=ajouterAEquipage">
+        <div style="text-align: right;padding-right: 10px">
+            <img src="images/boutonAjouter.jpg" title="Ajouter" width=3% height=3%>
+        </style>
+    </div>
+        </a>
 
     <!-- Tableau des equipages -->
         <table class="table table-striped table-hover">
@@ -17,6 +23,8 @@
                     <th scope="col">Id_PERSONNEL</th>
                     <th scope="col">present</th>
                     <th scope="col">Id_ROLE</th>
+                    <th scope="col">Modifier</th>
+                    <th scope="col">Supprimer</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,17 +37,12 @@
                         <td><?php echo $unEquipage['present']; ?></td>
                         <td><?php echo $unEquipage['Id_ROLE']; ?></td>
                         <td>
-                            <a href="index.php?uc=Equipage&action=ajouterAEquipage&num=<?php echo $mouvement; ?>">
-                            <img src="images/boutonAjouter.jpg" title="Ajouter">
+                            <a href="index.php?uc=equipage&action=modifierEquipage&num=<?php echo $mouvement; ?>">
+                                <img src="images/modif.jpg" title="Modifier" width=10% height=10%>
                             </a>
                         </td>
                         <td>
-                            <a href="index.php?uc=Equipage&action=modifierEquipage&num=<?php echo $mouvement; ?>">
-                                <img src="images/modifier.gif" title="Modifier">
-                            </a>
-                        </td>
-                        <td>
-                            <a href="index.php?uc=Equipage&action=supressionAEquipage&num=<?php echo $mouvement; ?>">
+                            <a href="index.php?uc=equipage&action=supressionAEquipage&num=<?php echo $mouvement; ?>">
                                 <img src="images/supp.png" title="Supprimer">
                             </a>
                         </td>

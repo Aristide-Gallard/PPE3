@@ -130,4 +130,28 @@ INNER JOIN modele ON avion.Id_MODELE = modele.Id_MODELE";
 		return $res->fetchAll();
 	}
 
+	public static function getPersonnels()
+	{
+		$req = "SELECT * FROM personnel";
+		$res = PdoMudry::$monPdo ->query($req);
+		return $res->fetchAll();
+	}
+
+	public static function getRoles()
+	{
+		$req = "SELECT * FROM role";
+		$res = PdoMudry::$monPdo ->query($req);
+		return $res->fetchAll();
+	}
+
+	public static function ajoutEquipage($mouvement, $personnel, $present, $role)
+	{
+		$req = "INSERT INTO equipage(Id_MOUVEMENT, Id_PERSONNEL, present, Id_ROLE) VALUES (:vmouvement,:vpersonnel,:vpresent,:vrole)";
+		$res = PdoMudry::$monPdo ->prepare($req);
+		$res->bindValue(":vmouvement", $mouvement);
+		$res->bindValue(":vpersonnel", $personnel);
+		$res->bindValue(":vpresent", $present);
+		$res->bindValue(":vrole", $role);
+		$res->execute();
+	}
 }
