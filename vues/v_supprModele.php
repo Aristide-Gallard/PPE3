@@ -7,11 +7,14 @@
             <div class="col-md-4">
                 <form action="index.php?uc=flotte&action=confirmSupprModele" method="post">
                     <label for="id">Id du modele</label>
-                    <input id="id" name="id" type="number" value="<?php echo $modele['Id_MODELE'] ?>" readonly="true"><br>
+                    <input id="id" name="id" type="number" value="<?php echo $modele['Id_MODELE'] ?>"
+                        readonly="true"><br>
                     <label for="libelle">libelle</label>
-                    <input id="libelle" name="libelle" type="text" value="<?php echo $modele['libelle'] ?> "  readonly="true"><br>
+                    <input id="libelle" name="libelle" type="text" value="<?php echo $modele['libelle'] ?> "
+                        readonly="true"><br>
                     <label for="nbSiege">nbSiege</label>
-                    <input id="nbSiege" name="nbSiege" type="number" value="<?php echo $modele['nbSiege'] ?>"  readonly="true"><br>
+                    <input id="nbSiege" name="nbSiege" type="number" value="<?php echo $modele['nbSiege'] ?>"
+                        readonly="true"><br>
                     <label for="CDB">CDB</label>
                     <input id="CDB" name="CDB" type="number" value="<?php echo $modele['CDB'] ?>" readonly="true"><br>
                     <label for="OPL">OPL</label>

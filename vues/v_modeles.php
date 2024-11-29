@@ -1,6 +1,8 @@
 <div id="modeles">
     Ceci est l'affichage des modeles
     <a href="index.php?uc=flotte&action=voirModeles">voirModeles</a>
+    <a href="index.php?uc=flotte&action=voirAvions">voir Avions</a>
+    <a href="index.php?uc=flotte&action=creerModele">creer modele</a>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
@@ -21,7 +23,7 @@
             foreach ($modeles as $modele) {
                 ?>
                 <tr>
-                    <td><?php echo $modele['Id_MODELE'] ?></td>
+                    <td id="<?php echo $modele['Id_MODELE'] ?>"><?php echo $modele['Id_MODELE'] ?></td>
                     <td><?php echo $modele['libelle'] ?></td>
                     <td><?php echo $modele['nbSiege'] ?></td>
                     <td><?php echo $modele['CDB'] ?></td>

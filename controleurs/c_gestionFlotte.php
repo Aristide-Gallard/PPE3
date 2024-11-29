@@ -28,5 +28,60 @@ switch ($action) {
     case 'confirmSupprModele': {
         $idModele = $_POST['id'];
         $pdo->supprModele($idModele);
+        $modeles = $pdo->getModeles();
+        include('vues/v_modeles.php');
+        break;
+    }
+    case 'creerModele': {
+        include('vues/v_creerModele.php');
+        break;
+    }
+    case 'confirmCreerModele': {
+        $pdo->creerModele($_POST['libelle'], $_POST['nbSiege'], $_POST['CDB'], $_POST['OPL'], $_POST['CCP'], $_POST['CC'], $_POST['H/S']);
+        $modeles = $pdo->getModeles();
+        include('vues/v_modeles.php');
+        break;
+    }
+
+    case 'voirAvions': {
+        $avions = $pdo->getAvions();
+        include('vues/v_avions.php');
+        break;
+    }
+    case 'modifierAvion': {
+        $idAvion = $_REQUEST['id'];
+        $avion = $pdo->getAvion($idAvion);
+        $modeles = $pdo->getModeles();
+        include('vues/v_modifAvion.php');
+        break;
+    }
+    case 'confirmModifAvion': {
+        $pdo->modifAvion($_POST['id'], $_POST['code'], $_POST['numSerie'], $_POST['modele']);
+        $avions = $pdo->getAvions();
+        include('vues/v_avions.php');
+        break;
+    }
+    case 'supprimerAvion': {
+        $idModele = $_REQUEST['id'];
+        $modele = $pdo->getModele($idModele);
+        include('vues/v_supprModele.php');
+        break;
+    }
+    case 'confirmSupprAvion': {
+        $idModele = $_POST['id'];
+        $pdo->supprModele($idModele);
+        $modeles = $pdo->getModeles();
+        include('vues/v_modeles.php');
+        break;
+    }
+    case 'creerAvion': {
+        include('vues/v_creerModele.php');
+        break;
+    }
+    case 'confirmCreerAvion': {
+        $pdo->creerModele($_POST['libelle'], $_POST['nbSiege'], $_POST['CDB'], $_POST['OPL'], $_POST['CCP'], $_POST['CC'], $_POST['H/S']);
+        $modeles = $pdo->getModeles();
+        include('vues/v_modeles.php');
+        break;
     }
 }
