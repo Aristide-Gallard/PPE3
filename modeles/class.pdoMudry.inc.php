@@ -31,7 +31,7 @@ class PdoMudry
 		else
 		{PdoMudry::$monPdo=new PDO ('mysql:host=localhost;dbname=mudry', 'root','toor');}
 
-			PdoMudry::$monPdo->query("SET CHARACTER SET utf8");
+		PdoMudry::$monPdo->query("SET CHARACTER SET utf8");
 	}
 	public function _destruct(){
 		PdoMudry::$monPdo = null;
@@ -50,28 +50,5 @@ class PdoMudry
 			PdoMudry::$monPdoMudry= new PdoMudry();
 		}
 		return PdoMudry::$monPdoMudry;  
-	}
-	function connecter($identifiant,$mdp)
-	{
-		$req = PdoMudry::$monPdo -> prepare("SELECT * FROM profil WHERE identifiant = :videntifiant");
-		$req->bindValue("videntifiant", $identifiant);
-		$req->execute();
-		foreach($req as $ligne)
-		{
-			return ($ligne['mdp']==$mdp);
-		}
-	
-		return false;
-	}
-
-	/**
-	 * affiche l'equipage
-	 */
-
-	public static function getEquipages()
-	{
-		$req = "SELECT * FROM equipage";
-		$res = PdoMudry::$monPdo ->query($req);
-		return $res->fetchAll();
 	}
 }
