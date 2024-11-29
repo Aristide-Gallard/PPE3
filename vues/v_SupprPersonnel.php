@@ -7,10 +7,10 @@
 
     </head>
 	<?php
-
-             $id = $LesPersonnels['Id_PERSONNEL'];
-            $tel = $LesPersonnels['tel']; 
-            echo $num;
+       
+        $num = $LesPersonnels['num']; 
+        $tel = $LesPersonnels['tel']; 
+        echo $num;
            ?>
 			
 	

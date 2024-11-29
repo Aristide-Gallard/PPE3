@@ -87,14 +87,16 @@ public static function getlesPersonnels(){
     $lesLignes = $res->fetchAll();
     return $lesLignes;
 }
-public static function getlePersonnel(){
-    $req = "SELECT * FROM personnel WHERE id_PERSONNEL = :num";
-    $res = PdoMudry::$monPdo->query($req);
-    $lesPersonnels = $res->fetchAll();
-    $lesLignes = $res->fetchAll();
+public static function getlePersonnel($num)
+{
+    $req = "SELECT id_PERSONNEL AS num, tel FROM personnel WHERE id_PERSONNEL = :num";
+    $res = PdoMudry::$monPdo->prepare($req);
+    $res->bindValue(":num", $num, PDO::PARAM_INT);
     $res->execute();
-    return $lesLignes;
+    $ligne = $res->fetch(PDO::FETCH_ASSOC);
+    return $ligne;
 }
+
 /**
  * Créer un Personnel 
  *
@@ -107,10 +109,36 @@ public function creerPersonnel($tel)
     $res->bindValue(':tel', $tel, PDO::PARAM_STR);
     $res->execute();
 }
+/**
+ * Modifier un Personnel 
+ *
+ * Modifier un personnel à partir des arguments validés passés en paramètre
+*/
 public function supressionPersonnel($num)
 {
 	$res = PdoMudry::$monPdo->prepare('DELETE from personnel WHERE id_PERSONNEL = :num');
 	$res->bindValue('num', $num, PDO::PARAM_INT);
 	$res->execute();
 }
+/**
+ * Suprimer un Personnel 
+ *
+ * Supprimer un personnel à partir des arguments validés passés en paramètre
+*/
+public function modificationPersonnel($tel, $num)
+{
+   
+        $res = PdoMudry::$monPdo->prepare('UPDATE personnel SET tel = :tel WHERE id_PERSONNEL = :num');
+        $res->bindValue(':tel', $tel, PDO::PARAM_STR);
+        $res->bindValue(':num', $num, PDO::PARAM_INT);
+        $res->execute();
+
+        if ($res->rowCount() === 0) {
+            return "Aucune modification effectuée. Vérifiez l'ID.";
+        }
+
+        return "Mise à jour réussie.";
+   
 }
+}
+
