@@ -187,7 +187,11 @@ FROM modele rp WHERE rp.id_MODELE = :id_modele";
 		$req = "DELETE FROM modele WHERE Id_MODELE = :ID_MODELE";
 		$res = PdoMudry::$monPdo->prepare($req);
 		$res->bindValue("ID_MODELE", $id);
-		$res->execute();
+		try {
+			$res->execute();
+		} catch (Exception $e) {
+			echo "merci de d'abord supprimer les avions correspondants à ce modele";
+		}
 	}
 
 
@@ -226,6 +230,21 @@ INNER JOIN modele ON avion.Id_MODELE = modele.Id_MODELE WHERE avion.Id_AVION = :
 	public static function modifAvion($id, $code, $numSerie, $modele)
 	{
 		$req = "UPDATE avion SET code = :code, numSerie = :numSerie, Id_MODELE = :ID_MODELE WHERE Id_AVION = :Id_AVION";
+		$res = PdoMudry::$monPdo->prepare($req);
+		$res->bindValue("code", $code);
+		$res->bindValue("numSerie", $numSerie);
+		$res->bindValue("ID_MODELE", $modele);
+		$res->bindValue("Id_AVION", $id);
+		$res->execute();
+	}
+
+	/**
+	 * modifie les valeurs associées à un avion
+	 *
+	 */
+	public static function creerAvion($id, $code, $numSerie, $modele)
+	{
+		$req = "INSERT INTO avion(code, numSerie, Id_MODELE, Id_AVION) VALUES(:code, :numSerie, :ID_MODELE, :Id_AVION)";
 		$res = PdoMudry::$monPdo->prepare($req);
 		$res->bindValue("code", $code);
 		$res->bindValue("numSerie", $numSerie);

@@ -75,13 +75,14 @@ switch ($action) {
         break;
     }
     case 'creerAvion': {
-        include('vues/v_creerModele.php');
+        include('vues/v_creerAvion.php');
         break;
     }
     case 'confirmCreerAvion': {
-        $pdo->creerModele($_POST['libelle'], $_POST['nbSiege'], $_POST['CDB'], $_POST['OPL'], $_POST['CCP'], $_POST['CC'], $_POST['H/S']);
-        $modeles = $pdo->getModeles();
-        include('vues/v_modeles.php');
+        echo'';
+        $pdo->creerAvion($_POST['id'], $_POST['code'], $_POST['numSerie'], $_POST['modele']);
+        $modeles = $pdo->getAvions();
+        include('vues/v_avions.php');
         break;
     }
 }
