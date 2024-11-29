@@ -23,6 +23,9 @@ switch($action)
             if ($pdo->connecter($_POST['identifiant'], $_POST['mdp'])){
                 echo "Bienvenue ",$_POST['identifiant']," avec le mot de passe : ",$_POST['mdp'];
                 $_SESSION["id"]=$_POST['identifiant'];
+                ?>
+                <a href="index.php?uc=accueuil">lien accueil</a>
+            <?php
             }else{
                 echo "Erreur de login";
             }

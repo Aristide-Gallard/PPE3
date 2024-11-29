@@ -63,4 +63,15 @@ class PdoMudry
 	
 		return false;
 	}
+
+	/**
+	 * affiche l'equipage
+	 */
+
+	public static function getEquipages()
+	{
+		$req = "SELECT * FROM equipage";
+		$res = PdoMudry::$monPdo ->query($req);
+		return $res->fetchAll();
+	}
 }

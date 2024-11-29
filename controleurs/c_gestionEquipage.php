@@ -8,7 +8,18 @@ switch($action)
 {
     case 'voirEquipage':
     {
-        include("vues/v_Equipage.php");
+        $mouvement='';
+        $personnel='';
+        $present='';
+        $role='';
+        //if (isset($LesEquipages) && !empty($LesEquipages))
+        //{
+            $LesEquipages = $pdo->getEquipages();
+            include("vues/v_Equipage.php");
+        //}
+        //else {
+        //    echo "Merci de vous connecter";
+        //}
         break;
     }
 

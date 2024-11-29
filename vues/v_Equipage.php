@@ -1,44 +1,51 @@
-<?php
-    try {
-        $bdd= new PDO ('mysql:host=localhost;dbname=mudry', 'root','toor');
-    } catch (\Throwable $th) {
-        echo ''. $th->getMessage() .'';
-    }        
+<!doctype html>
+<html>
 
-        $requete="SELECT mouvement.Id_MOUVEMENT, personnel.Id_PERSONNEL, equipage.present, role.Id_ROLE FROM equipage INNER JOIN mouvement ON equipage.Id_MOUVEMENT = mouvement.Id_MOUVEMENT INNER JOIN personnel ON equipage.Id_PERSONNEL = personnel.Id_PERSONNEL INNER JOIN role ON equipage.Id_ROLE = role.Id_ROLE;";
-        $res = $bdd->query($requete);
-    ?>
-    <div class="container">
-        <div class="row">
-            <div class="col-2"><h1>Equipage</h1></div>
-            <div class="col-8"></div>
-            <div class="col-2"><a class="lien" href="v_ajouterAEquipage.php">ajouter</a></div>
-        </div>
-    </div>
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Mouvement</th>
-                <th scope="col">Personnel</th>
-                <th scope="col">Present</th>
-                <th scope="col">Role</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php
-        while($ligne = $res->fetch())
-        {
-        ?>
-        <tr>
-            <th id="l<?php echo($ligne['Id_MOUVEMENT']) ?>">
-            <th><?php echo($ligne['Id_PERSONNEL']) ?></th>
-            <th><?php echo($ligne['present']) ?></th>
-            <th><?php echo($ligne['Id_ROLE']) ?></th>
-            <th><a href="v_modifierAEquipage.php?num=<?php echo($ligne['Id_MOUVEMENT'])?>">Modifier</a></th>
-            <th><a href="sup.php?num=<?php echo($ligne['Id_MOUVEMENT'])?>">Supprimer</a></th>
-        </tr>
-        <?php
-        }
-        ?>
-        </tbody>
-    </table>
+<head>
+    <title>Liste equipages</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="" />
+</head>
+<body>
+    <h1>Liste des equipages</h1>
+
+    <!-- Tableau des equipages -->
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Id_MOUVEMENT</th>
+                    <th scope="col">Id_PERSONNEL</th>
+                    <th scope="col">present</th>
+                    <th scope="col">Id_ROLE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($LesEquipages as $unEquipage){
+                ?>
+                    <tr>
+                        <td><?php echo $unEquipage['Id_MOUVEMENT'] ?></td>
+                        <td><?php echo $unEquipage['Id_PERSONNEL']; ?></td>
+                        <td><?php echo $unEquipage['present']; ?></td>
+                        <td><?php echo $unEquipage['Id_ROLE']; ?></td>
+                        <td>
+                            <a href="index.php?uc=Equipage&action=ajouterAEquipage&num=<?php echo $mouvement; ?>">
+                            <img src="images/boutonAjouter.jpg" title="Ajouter">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="index.php?uc=Equipage&action=modifierEquipage&num=<?php echo $mouvement; ?>">
+                                <img src="images/modifier.gif" title="Modifier">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="index.php?uc=Equipage&action=supressionAEquipage&num=<?php echo $mouvement; ?>">
+                                <img src="images/supp.png" title="Supprimer">
+                            </a>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+</body>
+</html>
