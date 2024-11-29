@@ -6,6 +6,13 @@
         <link href="style.css" rel="stylesheet" type="text/css" /> 
     </head>
     <body>
+    <div id="mudry">
+    Ceci est un accueil
+    <a href="index.php?uc=flotte&action=voirModeles">voirModeles</a>
+    <a href="index.php?uc=Personnel&action=voirPersonnel">voirPersonnel</a>
+
+</div>
+
         <?php
        $LesPersonnels = $pdo->getlePersonnel($num);
         $num = $LesPersonnels['num']; 

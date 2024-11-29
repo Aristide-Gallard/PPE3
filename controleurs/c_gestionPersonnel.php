@@ -14,7 +14,7 @@ switch ($action) {
 	case 'confirmCreatPersonnelC': {
 		$tel = $_POST['tel'];
 		$pdo->creerPersonnelC($tel);
-		$LesPersonnels = $pdo->getlesPersonnels();
+		$LesPersonnels = $pdo->getlesPersonnelsC();
 		include("vues/v_Personnel.php");
 		break;
 
@@ -26,8 +26,9 @@ switch ($action) {
 	}
 	case 'confirmCreatPersonnelT': {
 		$tel = $_POST['tel'];
-		$pdo->creerPersonnelT($tel);
-		$LesPersonnels = $pdo->getlesPersonnels();
+		$heureV = $_POST['heureV'];
+		$pdo->creerPersonnelT($tel, $heureV);
+		$LesPersonnels = $pdo->getlesPersonnelsT();
 		include("vues/v_Personnel.php");
 		break;
 
@@ -58,7 +59,7 @@ switch ($action) {
 	case 'confirmSupprPersonnel': {
 		$num = $_REQUEST['num'];
 		echo "confirmation suppr";
-		$pdo->supressionPersonnel($num);
+		$pdo->supressionPersonnelC($num);
 		$LesPersonnels = $pdo->getlesPersonnels();
 		include("vues/v_Personnel.php");
 		break;

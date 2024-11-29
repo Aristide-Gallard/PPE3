@@ -1,3 +1,10 @@
+
+<div id="mudry">
+    Ceci est un accueil
+    <a href="index.php?uc=flotte&action=voirModeles">voirModeles</a>
+    <a href="index.php?uc=Personnel&action=voirPersonnel">voirPersonnel</a>
+
+</div>
 <form action="index.php?uc=Personnel&action=confirmCreatPersonnelC" method="post">
     <label for="telP">Téléphone :</label>
     <input type="text" id="telP" name="tel" required>

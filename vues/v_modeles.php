@@ -1,5 +1,11 @@
 <div id="modeles">
-    Ceci est l'affichage des modeles
+<div id="mudry">
+    Ceci est un accueil
+    <a href="index.php?uc=flotte&action=voirModeles">voirModeles</a>
+    <a href="index.php?uc=Personnel&action=voirPersonnel">voirPersonnel</a>
+
+</div>
+
     <a href="index.php?uc=flotte&action=voirModeles">voirModeles</a>
     <table class="table table-striped table-hover">
         <thead>

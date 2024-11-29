@@ -6,6 +6,13 @@
     <link rel="stylesheet" href="" />
 </head>
 <body>
+<div id="mudry">
+    Ceci est un accueil
+    <a href="index.php?uc=flotte&action=voirModeles">voirModeles</a>
+    <a href="index.php?uc=Personnel&action=voirPersonnel">voirPersonnel</a>
+
+</div>
+
     <h1>Liste des personnels</h1>
     <!-- Tableau des personnels -->
     <?php if (isset($LesPersonnels) && !empty($LesPersonnels)): ?>
@@ -65,12 +72,13 @@
                 foreach ($LesPersonnels as $unPersonnel):
                     $tel = ($unPersonnel['tel']);
                     $id = ($unPersonnel['Id_PERSONNEL']);
+                    $heureV = ($unPersonnel['heureV']);
 
                     ?>
                     <tr>
                         <td><?php echo $id; ?></td>
                         <td><?php echo $tel; ?></td>
-                        <td><?php echo $tel; ?></td>
+                        <td><?php echo $heureV; ?></td>
                         <td>
                             <a href="index.php?uc=Personnel&action=modificationPersonnel&num=<?php echo $id; ?>">
                                 <img src="images/modifier.gif" title="Modifier">
