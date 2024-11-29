@@ -6,14 +6,27 @@ switch ($action) {
 		include("vues/v_Personnel.php");
 		break;
 	}
-	case 'creationPersonnel': {
+	case 'creationPersonnelC': {
 
 		include("vues/v_creerPersonnelCommercial.php");
 		break;
 	}
-	case 'confirmCreatPersonnel': {
+	case 'confirmCreatPersonnelC': {
 		$tel = $_POST['tel'];
-		$pdo->creerPersonnel($tel);
+		$pdo->creerPersonnelC($tel);
+		$LesPersonnels = $pdo->getlesPersonnels();
+		include("vues/v_Personnel.php");
+		break;
+
+	}
+	case 'creationPersonnelT': {
+
+		include("vues/v_creerPersonnelTechnique.php");
+		break;
+	}
+	case 'confirmCreatPersonnelT': {
+		$tel = $_POST['tel'];
+		$pdo->creerPersonnelT($tel);
 		$LesPersonnels = $pdo->getlesPersonnels();
 		include("vues/v_Personnel.php");
 		break;

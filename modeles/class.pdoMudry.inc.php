@@ -102,13 +102,50 @@ public static function getlePersonnel($num)
  *
  * Créer un personnel à partir des arguments validés passés en paramètre
 */
-public function creerPersonnel($tel)
+public function creerPersonnelC($tel)
 {
-    $sql = 'INSERT INTO personnel (tel) VALUES (:tel)';
-    $res = PdoMudry::$monPdo->prepare($sql);
-    $res->bindValue(':tel', $tel, PDO::PARAM_STR);
-    $res->execute();
+        $req = 'INSERT INTO personnel (tel) VALUES (:tel)';
+        $req = PdoMudry::$monPdo->prepare($req);
+        $req->bindValue(':tel', $tel, PDO::PARAM_STR);
+        $req->execute();
+         $idPersonnel = PdoMudry::$monPdo->lastInsertId();
+        $req = 'INSERT INTO COMMERCIAL (Id_PERSONNEL) VALUES (:idPersonnel)';
+        $req = PdoMudry::$monPdo->prepare($req);
+        $req->bindValue(':idPersonnel', $idPersonnel, PDO::PARAM_INT);
+        $req->execute();
+        
+
+         return $idPersonnel;    
+        
+
 }
+
+public function creerPersonnelT($tel)
+{
+    // Commencez la transaction
+    PdoMudry::$monPdo->beginTransaction();
+    
+        // Insertion dans la table personnel
+        $req = 'INSERT INTO personnel (tel) VALUES (:tel)';
+        $stmt = PdoMudry::$monPdo->prepare($req);
+        $stmt->bindValue(':tel', $tel, PDO::PARAM_STR);
+        $stmt->execute();
+        
+        // Récupération du dernier ID inséré
+        $idPersonnel = PdoMudry::$monPdo->lastInsertId();
+        
+        // Insertion dans la table TECHNIQUE
+        $req = 'INSERT INTO TECHNIQUE (Id_PERSONNEL) VALUES (:idPersonnel)';
+        $stmt = PdoMudry::$monPdo->prepare($req);
+        $stmt->bindValue(':idPersonnel', $idPersonnel, PDO::PARAM_INT);
+        $stmt->execute();
+        
+      
+}
+ 
+        
+
+
 /**
  * Modifier un Personnel 
  *
@@ -116,6 +153,15 @@ public function creerPersonnel($tel)
 */
 public function supressionPersonnel($num)
 {
+	$res = PdoMudry::$monPdo->prepare('DELETE from personnel WHERE id_PERSONNEL = :num');
+	$res->bindValue('num', $num, PDO::PARAM_INT);
+	$res->execute();
+}
+public function supressionPersonnelC($num)
+{
+    $res = PdoMudry::$monPdo->prepare('DELETE from commercial WHERE id_PERSONNEL = :num');
+	$res->bindValue('num', $num, PDO::PARAM_INT);
+	$res->execute();
 	$res = PdoMudry::$monPdo->prepare('DELETE from personnel WHERE id_PERSONNEL = :num');
 	$res->bindValue('num', $num, PDO::PARAM_INT);
 	$res->execute();
