@@ -174,4 +174,10 @@ INNER JOIN modele ON avion.Id_MODELE = modele.Id_MODELE";
 		$res->bindValue(":vrole", $role);
 		$res->execute();
 	}
+	public static function SuppEquipage($mouvement, $personnel, $present, $role)
+	{
+		$req = "DELETE FROM equipage WHERE $mouvement = Id_MOUVEMENT AND $personnel = Id_PERSONNEL AND $present = present AND $role = Id_ROLE";
+		$res = PdoMudry::$monPdo ->prepare($req);
+		$res->execute();
+	}
 }

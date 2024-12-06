@@ -42,7 +42,7 @@
                             </a>
                         </td>
                         <td>
-                            <a href="index.php?uc=equipage&action=supressionAEquipage&num=<?php echo $mouvement; ?>">
+                            <a href="index.php?uc=equipage&action=supprimerAEquipage&idM=<?php echo $unEquipage['Id_MOUVEMENT'] ?>&idP=<?php echo $unEquipage['Id_PERSONNEL'] ?>&idPr=<?php echo $unEquipage['present']?>&idR=<?php echo $unEquipage['Id_ROLE'] ?>">
                                 <img src="images/supp.png" title="Supprimer">
                             </a>
                         </td>
