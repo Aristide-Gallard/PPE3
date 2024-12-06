@@ -239,17 +239,33 @@ INNER JOIN modele ON avion.Id_MODELE = modele.Id_MODELE WHERE avion.Id_AVION = :
 	}
 
 	/**
-	 * modifie les valeurs associées à un avion
+	 * creer une ligne dans la table avion
 	 *
 	 */
-	public static function creerAvion($id, $code, $numSerie, $modele)
+	public static function creerAvion($code, $numSerie, $modele)
 	{
-		$req = "INSERT INTO avion(code, numSerie, Id_MODELE, Id_AVION) VALUES(:code, :numSerie, :ID_MODELE, :Id_AVION)";
+		$req = "INSERT INTO avion(code, numSerie, Id_MODELE) VALUES(:code, :numSerie, :ID_MODELE)";
 		$res = PdoMudry::$monPdo->prepare($req);
 		$res->bindValue("code", $code);
 		$res->bindValue("numSerie", $numSerie);
 		$res->bindValue("ID_MODELE", $modele);
-		$res->bindValue("Id_AVION", $id);
 		$res->execute();
+	}
+
+	/**
+	 * supprime un modele
+	 *
+	 */
+	public static function supprAvion($id)
+	{
+		$req = "DELETE FROM avion WHERE Id_AVION = :Id_AVION";
+		$res = PdoMudry::$monPdo->prepare($req);
+		$res->bindValue("Id_AVION", $id);
+		try {
+			$res->execute();
+			echo"succès";
+		} catch (Exception $e) {
+			echo "erreur lors de la suppression, merci de supprimer tous les mouvements le concernant";
+		}
 	}
 }

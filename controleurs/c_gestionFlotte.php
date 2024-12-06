@@ -62,26 +62,27 @@ switch ($action) {
         break;
     }
     case 'supprimerAvion': {
-        $idModele = $_REQUEST['id'];
-        $modele = $pdo->getModele($idModele);
-        include('vues/v_supprModele.php');
+        $idAvion = $_REQUEST['id'];
+        $avion = $pdo->getAvion($idAvion);
+        include('vues/v_supprAvion.php');
         break;
     }
     case 'confirmSupprAvion': {
         $idModele = $_POST['id'];
-        $pdo->supprModele($idModele);
-        $modeles = $pdo->getModeles();
-        include('vues/v_modeles.php');
+        $pdo->supprAvion($idModele);
+        $avions = $pdo->getAvions();
+        include('vues/v_avions.php');
         break;
     }
     case 'creerAvion': {
+        $modeles = $pdo->getModeles();
         include('vues/v_creerAvion.php');
         break;
     }
     case 'confirmCreerAvion': {
-        echo'';
-        $pdo->creerAvion($_POST['id'], $_POST['code'], $_POST['numSerie'], $_POST['modele']);
-        $modeles = $pdo->getAvions();
+        echo'creation réussie';
+        $pdo->creerAvion($_POST['code'], $_POST['numSerie'], $_POST['modele']);
+        $avions = $pdo->getAvions();
         include('vues/v_avions.php');
         break;
     }
