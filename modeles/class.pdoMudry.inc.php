@@ -80,8 +80,18 @@ public static function getAeroports(){
 	return $res->fetchAll();
 }
 
-
-
+	/**
+	 * Retourne l'avion sous forme d'un tableau associatif
+	 *
+	 * @return// l'aeroport choisie selon id
+	 */
+public function getAeroport($idAeroport) {
+    $req = "SELECT * FROM aeroport WHERE aeroport.Id_AEROPORT = :aeroport";
+	$res = PdoMudry::$monPdo->prepare($req);
+    $res->bindValue('aeroport', $id);
+    $res->execute();
+    return $res->fetch();
+}
 
 	/**
 	 * Retourne tous les modeles sous forme d'un tableau associatif
@@ -241,7 +251,7 @@ INNER JOIN modele ON avion.Id_MODELE = modele.Id_MODELE";
 	/**
 	 * Retourne l'avion sous forme d'un tableau associatif
 	 *
-	 * @return// le tableau associatif de l'avion 
+	 * @return// l'avion choisie selon id
 	 */
 	public static function getAvion($id)
 	{
@@ -322,7 +332,7 @@ INNER JOIN modele ON avion.Id_MODELE = modele.Id_MODELE WHERE avion.Id_AVION = :
 	$res = $req->execute();
 
 	if ($res) {
-	echo "Insertion réussie";
+	include("vues/v_confirmAjouterMouvement.php");
 	} else {
 	echo "Erreur lors de l'insertion";
 	}
@@ -354,7 +364,6 @@ INNER JOIN modele ON avion.Id_MODELE = modele.Id_MODELE WHERE avion.Id_AVION = :
 	echo "Erreur lors de l'insertion";
 	}
 }
-
 
 
 

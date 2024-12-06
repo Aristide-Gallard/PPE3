@@ -40,8 +40,8 @@ Ceci est la gestion des vols
                         <td><?= htmlspecialchars($mouvement['Id_AEROPORT']) ?></td>
                         <td><?= htmlspecialchars($mouvement['Id_AEROPORT_1']) ?></td>
                         <td><?= htmlspecialchars($mouvement['Id_AVION']) ?></td>
-                        <td><li><a href=index.php?uc=vol&action=modifierMouvement><img src="images/modif.jpg" height = 35 px></a></li></td>
-                        <td><li><a href=index.php?uc=vol&action=ajouterMouvement><img src="images/supp.jpg" height = 35 px></a></li></td>
+                        <td><a href=index.php?uc=vol&action=modifierMouvement><img src="images/modif.jpg" height = 35 px></a></td>
+                        <td><a href=index.php?uc=vol&action=supprimerMouvement><img src="images/supp.png" height = 35 px></a></td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
