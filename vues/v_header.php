@@ -5,4 +5,5 @@
     <a href="index.php?uc=vol&action=gererMouvement">Vols</a>
     <a href="index.php?uc=vol&action=gererAeroport">Aéroports</a>
     <a href="index.php?uc=equipage&action=voirEquipage">Equipage</a>
+    <a href="index.php?uc=connexion&action=seConnecter">Connexion</a>
 </header>
