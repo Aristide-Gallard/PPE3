@@ -9,7 +9,8 @@
     <label for="telP">Téléphone :</label>
     <input type="text" id="telP" name="tel" required>
     <br><br>
- <input type="time">
+    <label for="heureV">Heure de vol :</label>
+    <input type="text" id="heureV" name="heureV" required>
     <br><br>
     <input type="submit" value="Créer le personnel">
 </form>

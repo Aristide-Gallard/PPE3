@@ -1,20 +1,25 @@
-
 <div id="mudry">
     Ceci est un accueil
     <a href="index.php?uc=flotte&action=voirModeles">voirModeles</a>
     <a href="index.php?uc=Personnel&action=voirPersonnel">voirPersonnel</a>
+    
+    <form method="POST" action="index.php?uc=Personnel&action=confirmCreatPersonnelC">
+        <label for="tel">Numéro de téléphone :</label>
+        <input type="text" id="tel" name="tel" required>
+<br>
+        <!-- Sélection des langues parlées (cases à cocher) -->
+        <label for="langues">Langues parlées :</label>
+        <div>
+            <?php
+            // Remplir le formulaire avec des cases à cocher pour chaque langue
+            foreach ($langues as $langue) {
+                echo '<label>';
+                echo '<input type="checkbox" name="langue[]" value="' . $langue['Id_LANGUE'] . '"> ' . $langue['nom'];
+                echo '</label><br>';
+            }
+            ?>
+        </div>
 
+        <button type="submit">Créer personnel commercial</button>
+    </form>
 </div>
-<form action="index.php?uc=Personnel&action=confirmCreatPersonnelC" method="post">
-    <label for="telP">Téléphone :</label>
-    <input type="text" id="telP" name="tel" required>
-    <br><br>
-    <input type="checkbox" name="colors[]" value="langue1" id="color_red" />
-    <label for="color_red">Français</label>
-    <input type="checkbox" name="colors[]" value="langue2" id="color_green" />
-    <label for="color_red">Anglais</label>
-    <input type="checkbox" name="colors[]" value="langue3" id="color_blue" />
-    <label for="color_red">Espagnol</label>
-    <br><br>
-    <input type="submit" value="Créer le personnel">
-</form>

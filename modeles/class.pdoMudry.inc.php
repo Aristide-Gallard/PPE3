@@ -79,6 +79,20 @@ INNER JOIN modele ON avion.Id_MODELE = modele.Id_MODELE";
         $res = PdoMudry::$monPdo->query($req);
         return $res->fetchAll();
     }
+
+    public static function getLangues(){
+    $req = "SELECT * FROM langue";
+    $res = PdoMudry::$monPdo->query($req);
+    return $res->fetchAll();
+}
+
+    public static function getLanguesPersonnel($id){
+        $req = "SELECT parle.Id_LANGUE, langue.nom FROM parle INNER JOIN langue ON parle.Id_LANGUE = langue.Id_LANGUE WHERE Id_PERSONNEL=:id ";
+        $res = PdoMudry::$monPdo->prepare($req);
+        $res->bindValue(":id", $id, PDO::PARAM_INT);
+        $res->execute();
+        return $res->fetchAll();
+    }
     /**
      * Retourne tous les modeles sous forme d'un tableau associatif
      *
@@ -115,79 +129,127 @@ INNER JOIN modele ON avion.Id_MODELE = modele.Id_MODELE";
         return $ligne;
     }
 
+    public static function getlePersonnelT($num)
+    {
+        $req = "SELECT technique.id_PERSONNEL AS num, tel, heureV FROM personnel INNER JOIN technique ON personnel.Id_PERSONNEL = technique.Id_PERSONNEL  WHERE technique.id_PERSONNEL = :num";
+        $res = PdoMudry::$monPdo->prepare($req);
+        $res->bindValue(":num", $num, PDO::PARAM_INT);
+        $res->execute();
+        $ligne = $res->fetch(PDO::FETCH_ASSOC);
+        return $ligne;
+    }
+
     /**
      * Créer un Personnel 
      *
      * Créer un personnel à partir des arguments validés passés en paramètre
      */
-    public function creerPersonnelC($tel)
-    {
-        $req = 'INSERT INTO personnel (tel) VALUES (:tel)';
+
+     public function addLangueToPersonnelC($idPersonnel, $id_LANGUE)
+{
+    $req ='INSERT INTO `parle` (`Id_PERSONNEL`, `id_LANGUE`) VALUES (:id_PERSONNEL, :id_LANGUE)';
+    $req = PdoMudry::$monPdo->prepare($req);
+    $req->bindValue(':id_PERSONNEL', $idPersonnel, PDO::PARAM_INT);
+    $req->bindValue(':id_LANGUE', $id_LANGUE, PDO::PARAM_INT);
+    $req->execute();
+}
+
+
+
+public function creerPersonnelC($tel, $langues)
+{
+    
+    $req = 'INSERT INTO personnel (tel) VALUES (:tel)';
+    $req = PdoMudry::$monPdo->prepare($req);
+    $req->bindValue(':tel', $tel, PDO::PARAM_STR);
+    $req->execute();
+
+    
+    $idPersonnel = PdoMudry::$monPdo->lastInsertId();
+
+    
+    $req = 'INSERT INTO COMMERCIAL (Id_PERSONNEL) VALUES (:idPersonnel)';
+    $req = PdoMudry::$monPdo->prepare($req);
+    $req->bindValue(':idPersonnel', $idPersonnel, PDO::PARAM_INT);
+    $req->execute();
+
+    
+    foreach ($langues as $langue) {
+       $req = "INSERT INTO parle(Id_PERSONNEL, Id_LANGUE) VALUES (:idP,:idL)";
         $req = PdoMudry::$monPdo->prepare($req);
-        $req->bindValue(':tel', $tel, PDO::PARAM_STR);
+        $req->bindValue(':idP', $idPersonnel, PDO::PARAM_INT);
+        $req->bindValue(':idL', $langue, PDO::PARAM_INT);
         $req->execute();
-        $idPersonnel = PdoMudry::$monPdo->lastInsertId();
-        $req = 'INSERT INTO COMMERCIAL (Id_PERSONNEL) VALUES (:idPersonnel)';
-        $req = PdoMudry::$monPdo->prepare($req);
-        $req->bindValue(':idPersonnel', $idPersonnel, PDO::PARAM_INT);
-        $req->execute();
+   }
 
+    return $idPersonnel;
+}
 
-        return $idPersonnel;
-
-
-    }
 
     public function creerPersonnelT($tel, $heureV)
     {
+        
         $req = 'INSERT INTO personnel (tel) VALUES (:tel)';
         $req = PdoMudry::$monPdo->prepare($req);
         $req->bindValue(':tel', $tel, PDO::PARAM_STR);
         $req->execute();
-        $idPersonnel = PdoMudry::$monPdo->lastInsertId();
-        $req = 'INSERT INTO TECHNIQUE (Id_PERSONNEL, heureV) VALUES (:idPersonnel, :heureV)';
-        $req = PdoMudry::$monPdo->prepare($req);
-        $req->bindValue(':idPersonnel', $idPersonnel, PDO::PARAM_INT);
-        $req->bindValue(':heureV', $heureV, PDO::PARAM_INT);
-        $req->execute();
-    }
-
-
-
-
-    /**
-     * Modifier un Personnel 
-     *
-     * Modifier un personnel à partir des arguments validés passés en paramètre
-     */
-
-    public function supressionPersonnelC($num)
-    {
-        $res = PdoMudry::$monPdo->prepare('DELETE from commercial WHERE id_PERSONNEL = :num');
-        $res->bindValue('num', $num, PDO::PARAM_INT);
-        $res->execute();
-        $res = PdoMudry::$monPdo->prepare('DELETE from personnel WHERE id_PERSONNEL = :num');
-        $res->bindValue('num', $num, PDO::PARAM_INT);
-        $res->execute();
-    }
-
-    public function supressionPersonnelT($num)
-    {
-        
-        $res = PdoMudry::$monPdo->prepare('DELETE from technique WHERE id_PERSONNEL = :num');
-        $res->bindValue('num', $num, PDO::PARAM_INT);
-        $res->execute();
-        $res = PdoMudry::$monPdo->prepare('DELETE from personnel WHERE id_PERSONNEL = :num');
-        $res->bindValue('num', $num, PDO::PARAM_INT);
-        $res->execute();
-    }
     
-    /**
+        
+        $idPersonnel = PdoMudry::$monPdo->lastInsertId();
+    
+       
+        $req = 'INSERT INTO TECHNIQUE (Id_PERSONNEL, heureV) VALUES (:Id_PERSONNEL, :heureV)';
+        $req = PdoMudry::$monPdo->prepare($req);
+        $req->bindValue(':Id_PERSONNEL', $idPersonnel, PDO::PARAM_INT); // Bind Id_PERSONNEL
+        $req->bindValue(':heureV', $heureV, PDO::PARAM_STR);
+        $req->execute();
+    
+        return $idPersonnel;
+    }
+
+  /**
      * Suprimer un Personnel 
      *
      * Supprimer un personnel à partir des arguments validés passés en paramètre
      */
-    public function modificationPersonnel($tel, $num)
+   
+     public function supressionPersonnelC($id_personnel)
+     {
+         // Commencer par supprimer les références dans la table parle
+         $query = "DELETE FROM parle WHERE Id_PERSONNEL = :id_personnel";
+         $req = PdoMudry::$monPdo->prepare($query);
+         $req->bindValue(':id_personnel', $id_personnel, PDO::PARAM_INT);
+         $req->execute();
+     
+         // Ensuite, supprimer le personnel dans la table commercial
+         $query2 = "DELETE FROM commercial WHERE Id_PERSONNEL = :id_personnel";
+         $req2 = PdoMudry::$monPdo->prepare($query2);
+         $req2->bindValue(':id_personnel', $id_personnel, PDO::PARAM_INT);
+         $req2->execute();
+     }
+     
+
+    public function supressionPersonnelT($num)
+    {
+        // Supprimer d'abord de la table technique
+        $res = PdoMudry::$monPdo->prepare('DELETE FROM technique WHERE id_PERSONNEL = :num');
+        $res->bindValue('num', $num, PDO::PARAM_INT);
+        $res->execute();
+    
+        // Puis supprimer de la table personnel
+        $res = PdoMudry::$monPdo->prepare('DELETE FROM personnel WHERE id_PERSONNEL = :num');
+        $res->bindValue('num', $num, PDO::PARAM_INT);
+        $res->execute();
+    }
+    
+    
+  
+     /**
+     * Modifier un Personnel 
+     *
+     * Modifier un personnel à partir des arguments validés passés en paramètre
+     */
+    public function modificationPersonnelT($tel, $num,$heureV)
     {
 
         $res = PdoMudry::$monPdo->prepare('UPDATE personnel SET tel = :tel WHERE id_PERSONNEL = :num');
@@ -195,11 +257,20 @@ INNER JOIN modele ON avion.Id_MODELE = modele.Id_MODELE";
         $res->bindValue(':num', $num, PDO::PARAM_INT);
         $res->execute();
 
-        if ($res->rowCount() === 0) {
-            return "Aucune modification effectuée. Vérifiez l'ID.";
-        }
+        $res = PdoMudry::$monPdo->prepare('UPDATE technique SET heureV = :heureV WHERE id_PERSONNEL = :num');
+        $res->bindValue(':num', $num, PDO::PARAM_INT);
+        $res->bindValue(':heureV', $heureV, PDO::PARAM_INT);
+        $res->execute();
 
-        return "Mise à jour réussie.";
+    }
+
+    public function modificationPersonnelC($tel, $num)
+    {
+
+        $res = PdoMudry::$monPdo->prepare('UPDATE personnel SET tel = :tel WHERE id_PERSONNEL = :num');
+        $res->bindValue(':tel', $tel, PDO::PARAM_STR);
+        $res->bindValue(':num', $num, PDO::PARAM_INT);
+        $res->execute();
 
     }
 }

@@ -16,7 +16,8 @@
         <?php
        $LesPersonnels = $pdo->getlePersonnel($num);
         $num = $LesPersonnels['num']; 
-        $tel = $LesPersonnels['tel'];         
+        $tel = $LesPersonnels['tel'];  
+               
         ?>
         <h1>Modification du Personnel</h1>
         <form action="index.php?uc=Personnel&action=confirmModifPersonnel" method="post">

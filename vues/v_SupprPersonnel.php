@@ -16,7 +16,7 @@
 	
    <body>
    <p><h1>Supression Personnel:</h1></p><BR/>
-	<form action="index.php?uc=Personnel&action=confirmSupprPersonnel&num=<?php echo $num?>" method="post">
+	<form action="index.php?uc=Personnel&action=confirmSupprPersonnel<?php echo $typeP?>&num=<?php echo $num?>" method="post">
                 <br/>
 		<input type="submit" value="Valider">
 	</form>

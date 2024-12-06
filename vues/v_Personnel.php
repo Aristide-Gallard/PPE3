@@ -11,52 +11,47 @@
     <a href="index.php?uc=flotte&action=voirModeles">voirModeles</a>
     <a href="index.php?uc=Personnel&action=voirPersonnel">voirPersonnel</a>
 
-</div>
-
-    <h1>Liste des personnels</h1>
-    <!-- Tableau des personnels -->
-    <?php if (isset($LesPersonnels) && !empty($LesPersonnels)): ?>
-        <table class="table table-striped table-hover">
-            <thead>
+    <h1>Liste des personnels commerciaux</h1>
+<?php if (isset($LesPersonnelsC) && !empty($LesPersonnelsC)): ?>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Téléphone</th>
+                <th scope="col">Langue</th>
+                <th scope="col">Modifier</th>
+                <th scope="col">Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($LesPersonnelsC as $unPersonnel): 
+                    $langues = $pdo->getLanguesPersonnel($unPersonnel['Id_PERSONNEL']);
+                ?>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Téléphone</th>
-                    <th scope="col">Langue</th>
-
-                    <th scope="col">Modifier</th>
-                    <th scope="col">Supprimer</th>
+                    <td><?php echo ($unPersonnel['Id_PERSONNEL']); ?></td>
+                    <td><?php echo ($unPersonnel['tel']); ?></td>
+                    <td><?php foreach ($langues as $langue){echo $langue['nom']." ";} ?></td>
+                    <td>
+                        <a href="index.php?uc=Personnel&action=modificationPersonnelC&num=<?php echo $unPersonnel['Id_PERSONNEL']; ?>">
+                            <img src="images/modifier.gif" title="Modifier">
+                        </a>
+                    </td>
+                    <td>
+                        <a href="index.php?uc=Personnel&action=supressionPersonnelC&num=<?php echo $unPersonnel['Id_PERSONNEL']; ?>">
+                            <img src="images/supp.png" title="Supprimer">
+                        </a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <?php
-                foreach ($LesPersonnels as $unPersonnel):
-                    $tel = ($unPersonnel['tel']);
-                    $id = ($unPersonnel['Id_PERSONNEL']);
-                    ?>
-                    <tr>
-                        <td><?php echo $id; ?></td>
-                        <td><?php echo $tel; ?></td>
-                        <td><?php echo $tel; ?></td>
-                        <td>
-                            <a href="index.php?uc=Personnel&action=modificationPersonnel&num=<?php echo $id; ?>">
-                                <img src="images/modifier.gif" title="Modifier">
-                            </a>
-                        </td>
-                        <td>
-                            <a href="index.php?uc=Personnel&action=supressionPersonnel&num=<?php echo $id; ?>">
-                                <img src="images/supp.png" title="Supprimer">
-                            </a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    <?php else: ?>
-        <p>Aucun personnel disponible.</p>
-    <?php endif; ?>
-    <a href="index.php?uc=Personnel&action=creationPersonnelC">créer personnel</a>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php else: ?>
+    <p>Aucun personnel disponible.</p>
+<?php endif; ?>
+
+    <a href="index.php?uc=Personnel&action=creationPersonnelC">créer personnel Commercial</a>
     <br><br>
-    <?php if (isset($LesPersonnels) && !empty($LesPersonnels)): ?>
+    <?php if (isset($LesPersonnelsT) && !empty($LesPersonnelsT)): ?>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -69,7 +64,7 @@
             </thead>
             <tbody>
                 <?php
-                foreach ($LesPersonnels as $unPersonnel):
+                foreach ($LesPersonnelsT as $unPersonnel):
                     $tel = ($unPersonnel['tel']);
                     $id = ($unPersonnel['Id_PERSONNEL']);
                     $heureV = ($unPersonnel['heureV']);
@@ -80,12 +75,12 @@
                         <td><?php echo $tel; ?></td>
                         <td><?php echo $heureV; ?></td>
                         <td>
-                            <a href="index.php?uc=Personnel&action=modificationPersonnel&num=<?php echo $id; ?>">
+                            <a href="index.php?uc=Personnel&action=modificationPersonnelT&num=<?php echo $id; ?>">
                                 <img src="images/modifier.gif" title="Modifier">
                             </a>
                         </td>
                         <td>
-                            <a href="index.php?uc=Personnel&action=supressionPersonnel&num=<?php echo $id; ?>">
+                            <a href="index.php?uc=Personnel&action=supressionPersonnelT&num=<?php echo $id; ?>">
                                 <img src="images/supp.png" title="Supprimer">
                             </a>
                         </td>
@@ -96,7 +91,7 @@
     <?php else: ?>
         <p>Aucun personnel disponible.</p>
     <?php endif; ?>
-    <a href="index.php?uc=Personnel&action=creationPersonnelT">créer personnel</a>
+    <a href="index.php?uc=Personnel&action=creationPersonnelT">créer personnel Technique</a>
     <!-- Formulaire pour créer un nouveau personnel -->
 </body>
 </html>
