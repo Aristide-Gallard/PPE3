@@ -298,4 +298,65 @@ INNER JOIN modele ON avion.Id_MODELE = modele.Id_MODELE WHERE avion.Id_AVION = :
 			echo "erreur lors de la suppression, merci de supprimer tous les mouvements le concernant";
 		}
 	}
+
+
+/**
+ * Ajoute un mouvement à la bdd
+ */
+
+ public static function ajoutMouvement($numV,$nbPlace,$distance,$heureD,$duree,$heureA,$Id_AEROPORT,$Id_AEROPORT_1,$Id_AVION ){
+
+	$req = "INSERT INTO mouvement (numV, nbPlace, distance, heureD, duree, heureA, Id_AEROPORT, Id_AEROPORT_1, Id_AVION) 
+	VALUES (:numV, :nbPlace, :distance, :heureD, :duree, :heureA, :Id_AEROPORT, :Id_AEROPORT_1, :Id_AVION)";
+
+	$req = PdoMudry::$monPdo->prepare($req);
+	$req->bindParam(':numV', $numV);
+	$req->bindParam(':nbPlace', $nbPlace);
+	$req->bindParam(':distance', $distance);
+	$req->bindParam(':heureD', $heureD);
+	$req->bindParam(':duree', $duree);
+	$req->bindParam(':heureA', $heureA);
+	$req->bindParam(':Id_AEROPORT', $Id_AEROPORT);
+	$req->bindParam(':Id_AEROPORT_1', $Id_AEROPORT_1);
+	$req->bindParam(':Id_AVION', $Id_AVION);
+	$res = $req->execute();
+
+	if ($res) {
+	echo "Insertion réussie";
+	} else {
+	echo "Erreur lors de l'insertion";
+	}
+}
+
+/**
+ * Modification un mouvement à la bdd
+ */
+
+ public static function modifMouvement($nbPlace,$distance,$heureD,$duree,$heureA,$Id_AEROPORT,$Id_AEROPORT_1,$Id_AVION ){
+
+	$req = "UPDATE mouvement (nbPlace, distance, heureD, duree, heureA, Id_AEROPORT, Id_AEROPORT_1, Id_AVION) 
+	set (:nbPlace, :distance, :heureD, :duree, :heureA, :Id_AEROPORT, :Id_AEROPORT_1, :Id_AVION)";
+
+	$req = PdoMudry::$monPdo->prepare($req);
+	$req->bindParam(':nbPlace', $nbPlace);
+	$req->bindParam(':distance', $distance);
+	$req->bindParam(':heureD', $heureD);
+	$req->bindParam(':duree', $duree);
+	$req->bindParam(':heureA', $heureA);
+	$req->bindParam(':Id_AEROPORT', $Id_AEROPORT);
+	$req->bindParam(':Id_AEROPORT_1', $Id_AEROPORT_1);
+	$req->bindParam(':Id_AVION', $Id_AVION);
+	$res = $req->execute();
+
+	if ($res) {
+	echo "Insertion réussie. ";
+	} else {
+	echo "Erreur lors de l'insertion";
+	}
+}
+
+
+
+
+
 }
