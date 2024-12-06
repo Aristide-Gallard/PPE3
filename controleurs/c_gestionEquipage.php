@@ -41,6 +41,18 @@ switch($action)
     }
     case 'modifierAEquipage':
     {
+        $idM = $_REQUEST['idM'];
+        $idP = $_REQUEST['idP'];
+        $personnel = $pdo->getPersEqu($idM, $idP);
+        $LesRoles = $pdo->getRoles();
+        include("vues/v_modifierAEquipage.php");
+        break;
+    }
+    case 'confirmerModifEquipage':
+    {
+        $confirmerModif = $pdo->modifEquipage($_POST['mouvement'], $_POST['personnel'], $_POST['present'], $_POST['role']);
+        $LesEquipages = $pdo->getEquipages();
+        include("vues/v_Equipage.php");
         break;
     }
     case 'supprimerAEquipage':

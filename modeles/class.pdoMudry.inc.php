@@ -154,4 +154,24 @@ INNER JOIN modele ON avion.Id_MODELE = modele.Id_MODELE";
 		$res->bindValue(":vrole", $role);
 		$res->execute();
 	}
+	public static function getPersEqu($idM, $idP)
+	{
+		$req = "SELECT * FROM equipage WHERE Id_MOUVEMENT = '$idM' AND Id_PERSONNEL = '$idP'";
+		$res = PdoMudry::$monPdo ->query($req);
+		return $res->fetch();
+	}
+	public static function getNumero($mouvement, $personnel, $present, $role)
+	{
+		$req = "SELECT * from equipage where Id_MOUVEMENT = '$mouvement' AND Id_PERSONNEL = '$personnel' AND present = '$present' AND Id_ROLE = '$role'";
+		$res = PdoMudry::$monPdo ->prepare($req);
+		$res->execute();
+	}
+	public static function modifEquipage($mouvement, $personnel, $present, $role)
+	{
+		$req = "UPDATE equipage SET present=:vpresent,Id_ROLE=:vrole WHERE $mouvement = Id_MOUVEMENT AND $personnel = Id_PERSONNEL";
+		$res = PdoMudry::$monPdo ->prepare($req);
+		$res->bindValue(":vpresent", $present);
+		$res->bindValue(":vrole", $role);
+		$res->execute();
+	}
 }

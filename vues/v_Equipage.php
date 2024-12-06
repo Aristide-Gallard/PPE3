@@ -37,7 +37,7 @@
                         <td><?php echo $unEquipage['present']; ?></td>
                         <td><?php echo $unEquipage['Id_ROLE']; ?></td>
                         <td>
-                            <a href="index.php?uc=equipage&action=modifierEquipage&num=<?php echo $mouvement; ?>">
+                            <a href="index.php?uc=equipage&action=modifierAEquipage&idM=<?php echo $unEquipage['Id_MOUVEMENT'] ?>&idP=<?php echo $unEquipage['Id_PERSONNEL'] ?>">
                                 <img src="images/modif.jpg" title="Modifier" width=10% height=10%>
                             </a>
                         </td>

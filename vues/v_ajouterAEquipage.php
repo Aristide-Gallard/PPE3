@@ -3,6 +3,7 @@
    <fieldset>
      <legend>Ajout equipage</legend>
             <br>
+
 			<div class="form-group">
             <label for="mouvement">Id_MOUVEMENT</label>
             <select name="mouvement" id="mouvement" class="form-control" required>
@@ -13,6 +14,7 @@
             </select>
             </div>
             <br>
+
             <div class="form-group">
             <label for="personnel">Id_PERSONNEL</label>
             <select name="personnel" id="personnel" class="form-control" required>
@@ -23,6 +25,7 @@
             </select>
             </div>
             <br>
+            
             <div class="form-group">
             <label for="present">Present</label>
             <select name="present" id="present" class="form-control" required>
@@ -32,6 +35,7 @@
             </select>
             </div>
             <br>
+            
             <div class="form-group">
             <label for="role">Id_ROLE</label>
             <select name="role" id="role" class="form-control" required>
