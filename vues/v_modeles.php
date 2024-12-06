@@ -1,6 +1,6 @@
 <div id="modeles">
 Ceci est l'affichage des modeles
-    <a href="index.php?uc=flotte&action=voirModeles">voirModeles</a>
+<a href="index.php?uc=flotte&action=creerModele"><img src="Images/boutonAjouter.jpg" height = 35 px></a>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
