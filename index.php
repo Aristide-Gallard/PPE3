@@ -4,12 +4,12 @@ session_start();
 require_once("modeles/class.pdoMudry.inc.php");
 require_once("modeles/fonctions.inc.php");
 require_once("vues/v_entete.php");
-if(!isset($_REQUEST['uc']))
+if (!isset($_REQUEST['uc']))
      $uc = 'accueil';
 else
-	$uc = $_REQUEST['uc'];
+     $uc = $_REQUEST['uc'];
 
-$pdo = PdoMudry::getPdoMudry() ;
+$pdo = PdoMudry::getPdoMudry();
 
 switch($uc)
 {
