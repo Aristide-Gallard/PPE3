@@ -12,19 +12,23 @@ else
      $uc = $_REQUEST['uc'];
 
 $pdo = PdoMudry::getPdoMudry();
-
-switch($uc)
-{
-     case 'accueil':
-          {include("vues/v_accueil.php");break;}
-     case 'flotte':
-          {include("controleurs/c_gestionFlotte.php");break;}
-     case 'vol':
-          {include("controleurs/c_gestionVol.php");break;}
-     case 'Personnel':
-          {include("controleurs/c_gestionPersonnel.php");break;}
-     case 'connexion':
-          {include("controleurs/c_gestionConnexion.php");break;}
-     case 'equipage' :
-          {include("controleurs/c_gestionEquipage.php");break;}
+if ($uc == 'connexion'){
+     include("controleurs/c_gestionConnexion.php");
 }
+if (isset($_SESSION['id'])){
+     switch($uc)
+     {
+          case 'accueil':
+               {include("vues/v_accueil.php");break;}
+          case 'flotte':
+               {include("controleurs/c_gestionFlotte.php");break;}
+          case 'vol':
+               {include("controleurs/c_gestionVol.php");break;}
+          case 'Personnel':
+               {include("controleurs/c_gestionPersonnel.php");break;}
+          case 'equipage' :
+               {include("controleurs/c_gestionEquipage.php");break;}
+     }
+ }else{
+     echo"merci de vous connecter";
+ }
