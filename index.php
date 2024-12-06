@@ -21,4 +21,10 @@ switch($uc)
           {include("controleurs/c_gestionFlotte.php");break;}
      case 'vol':
           {include("controleurs/c_gestionVol.php");break;}
+     case 'Personnel':
+          {include("controleurs/c_gestionPersonnel.php");break;}
+     case 'connexion':
+          {include("controleurs/c_gestionConnexion.php");break;}
+     case 'equipage' :
+          {include("controleurs/c_gestionEquipage.php");break;}
 }

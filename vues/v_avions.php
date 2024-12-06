@@ -1,5 +1,6 @@
 <div id="modeles">
     Ceci est l'affichage des avions
+    <a href="index.php?uc=flotte&action=creerAvion"><img src="Images/boutonAjouter.jpg" height = 35 px></a>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
