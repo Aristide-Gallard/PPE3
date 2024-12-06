@@ -4,6 +4,8 @@ session_start();
 require_once("modeles/class.pdoMudry.inc.php");
 require_once("modeles/fonctions.inc.php");
 require_once("vues/v_entete.php");
+include("vues/v_header.php");
+
 if (!isset($_REQUEST['uc']))
      $uc = 'accueil';
 else

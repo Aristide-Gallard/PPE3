@@ -1,9 +1,6 @@
 <div id="modeles">
-<a href="index.php?uc=accueil" class="button">Retour</a>
 Ceci est l'affichage des modeles
     <a href="index.php?uc=flotte&action=voirModeles">voirModeles</a>
-    <a href="index.php?uc=flotte&action=voirAvions">voir Avions</a>
-    <a href="index.php?uc=flotte&action=creerModele">creer modele</a>
     <table class="table table-striped table-hover">
         <thead>
             <tr>

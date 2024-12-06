@@ -1,8 +1,5 @@
 <div id="modeles">
-    Ceci est l'affichage des modeles
-    <a href="index.php?uc=flotte&action=voirModeles">voirModeles</a>
-    <a href="index.php?uc=flotte&action=voirAvions">voir Avions</a>
-    <a href="index.php?uc=flotte&action=creerAvion">creer avion</a>
+    Ceci est l'affichage des avions
     <table class="table table-striped table-hover">
         <thead>
             <tr>
