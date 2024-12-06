@@ -24,17 +24,17 @@
 
                 <div class="form-group">
                     <label for="flightNumber">Nombre de places</label>
-                    <input type="text" class="form-control" id="nbPlaces" name="nbPlaces" placeholder="Entrez un nombre" required>
+                    <input type="number" class="form-control" id="nbPlace" name="nbPlace" placeholder="Entrez un nombre" required>
                 </div>
 
                 <div class="form-group">
                     <label for="flightNumber">Distance (km)</label>
-                    <input type="text" class="form-control" id="distance" name="distance" placeholder="Entrez un nombre" required>
+                    <input type="number" class="form-control" id="distance" name="distance" placeholder="Entrez un nombre" required>
                 </div>
 
                 <div class="form-group">
                     <label for="flightNumber">Durée (minute)</label>a
-                    <input type="text" class="form-control" id="duree" name="duree" placeholder="Entrez un nombre" required>
+                    <input type="number" class="form-control" id="duree" name="duree" placeholder="Entrez un nombre" required>
                 </div>
 
                 <div class="form-group">
@@ -48,31 +48,31 @@
                 </div>
 
                 <div class="form-group">
-                <label for="departureAirport">Aéroport de départ</label>
+                <label>Aéroport de départ</label>
                 <select id="Id_AEROPORT" name="Id_AEROPORT" class="form-control" required>
                     <option value="">Choisir un aéroport...</option>
                     <?php foreach ($lesAeroports as $aeroport): ?>
-                        <option value="<?php $aeroport['Id_AEROPORT']; ?>"><?php echo $aeroport['nom']; ?></option>
+                        <option value="<?php echo $aeroport['Id_AEROPORT']; ?>"><?php echo $aeroport['nom']; ?></option>
                     <?php endforeach; ?>
                 </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="arrivalAirport">Aéroport d'arrivée</label>
+                    <label>Aéroport d'arrivée</label>
                     <select id="Id_AEROPORT_1" name="Id_AEROPORT_1" class="form-control" required>
                         <option value="">Choisir un aéroport...</option>
                         <?php foreach ($lesAeroports as $aeroport): ?>
-                            <option value="<?php $aeroport['Id_AEROPORT']; ?>"><?php echo $aeroport['nom']; ?></option>
+                            <option value="<?php echo $aeroport['Id_AEROPORT']; ?>"><?php echo $aeroport['nom']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
                 
                 <div class="form-group">
-                    <label for="avion">Appareil</label>
+                    <label>Appareil</label>
                     <select id="Id_AVION" name="Id_AVION" class="form-control" required>
                         <option value="">Choisir un appareil...</option>
                         <?php foreach ($lesAvions as $avion): ?>
-                            <option value="<?php $avion['Id_AVION']; ?>"><?php echo $avion['code']; ?></option>
+                            <option value="<?php echo $avion['Id_AVION']; ?>"><?php echo $avion['code']; ?></option>
                         <?php endforeach; ?>
                     </select>
 
