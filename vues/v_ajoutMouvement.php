@@ -1,5 +1,5 @@
 <div id="creationCategorie">
-<form method="POST" action="index.php?uc=vol&action=confirmerAjoutMouvement">
+<form method="POST" action="index.php?uc=vol&action=confirmAjouterMouvement">
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -19,60 +19,60 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="flightNumber">N° du vol</label>
-                    <input type="text" class="form-control" id="numV" placeholder="Entrez un nombre" required>
+                    <input type="text" class="form-control" id="numV" name="numV" placeholder="Entrez un nombre" required>
                 </div>
 
                 <div class="form-group">
                     <label for="flightNumber">Nombre de places</label>
-                    <input type="text" class="form-control" id="nbPlaces" placeholder="Entrez un nombre" required>
+                    <input type="number" class="form-control" id="nbPlace" name="nbPlace" placeholder="Entrez un nombre" required>
                 </div>
 
                 <div class="form-group">
                     <label for="flightNumber">Distance (km)</label>
-                    <input type="text" class="form-control" id="distance" placeholder="Entrez un nombre" required>
+                    <input type="number" class="form-control" id="distance" name="distance" placeholder="Entrez un nombre" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="flightNumber">Durée (minute)</label>
-                    <input type="text" class="form-control" id="duree" placeholder="Entrez un nombre" required>
+                    <label for="flightNumber">Durée (minute)</label>a
+                    <input type="number" class="form-control" id="duree" name="duree" placeholder="Entrez un nombre" required>
                 </div>
 
                 <div class="form-group">
                     <label for="departureDate">Heure de départ</label>
-                    <input type="time" class="form-control" id="heureD" required>
+                    <input type="time" class="form-control" id="heureD" name="heureD" required>
                 </div>
 
                 <div class="form-group">
                     <label for="arrivalDate">Heure d'arrivée</label>
-                    <input type="time" class="form-control" id="heureA" required>
+                    <input type="time" class="form-control" id="heureA" name="heureA" required>
                 </div>
 
                 <div class="form-group">
-                <label for="departureAirport">Aéroport de départ</label>
-                <select id="departureAirport" class="form-control" required>
+                <label>Aéroport de départ</label>
+                <select id="Id_AEROPORT" name="Id_AEROPORT" class="form-control" required>
                     <option value="">Choisir un aéroport...</option>
-                    <?php foreach (getAeroports() as $aeroport): ?>
-                        <option value="<?= $aeroport['id_aeroport']; ?>"><?= $aeroport['nom']; ?></option>
+                    <?php foreach ($lesAeroports as $aeroport): ?>
+                        <option value="<?php echo $aeroport['Id_AEROPORT']; ?>"><?php echo $aeroport['nom']; ?></option>
                     <?php endforeach; ?>
                 </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="arrivalAirport">Aéroport d'arrivée</label>
-                    <select id="arrivalAirport" class="form-control" required>
+                    <label>Aéroport d'arrivée</label>
+                    <select id="Id_AEROPORT_1" name="Id_AEROPORT_1" class="form-control" required>
                         <option value="">Choisir un aéroport...</option>
-                        <?php foreach (getAeroports() as $aeroport): ?>
-                            <option value="<?= $aeroport['id_aeroport']; ?>"><?= $aeroport['nom']; ?></option>
+                        <?php foreach ($lesAeroports as $aeroport): ?>
+                            <option value="<?php echo $aeroport['Id_AEROPORT']; ?>"><?php echo $aeroport['nom']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
                 
                 <div class="form-group">
-                    <label for="aircraft">Appareil</label>
-                    <select id="aircraft" class="form-control" required>
+                    <label>Appareil</label>
+                    <select id="Id_AVION" name="Id_AVION" class="form-control" required>
                         <option value="">Choisir un appareil...</option>
-                        <?php foreach (getAvions() as $avion): ?>
-                            <option value="<?= $avion['id_avion']; ?>"><?= $avion['nom']; ?></option>
+                        <?php foreach ($lesAvions as $avion): ?>
+                            <option value="<?php echo $avion['Id_AVION']; ?>"><?php echo $avion['code']; ?></option>
                         <?php endforeach; ?>
                     </select>
 
