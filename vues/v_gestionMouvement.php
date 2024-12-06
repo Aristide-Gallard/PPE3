@@ -1,6 +1,4 @@
 <div id="gestionMouvement">
-<a href="index.php?uc=accueil" class="button">Retour</a>
-Ceci est la gestion des vols
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +6,8 @@ Ceci est la gestion des vols
     <title>Tableau de la gestion des vols</title>
 </head>
 <body>
+
+<h1>Gestion des vols</h1>
 
 <div class="container mt-5">
     <h2>Liste des vols <a href=index.php?uc=vol&action=ajouterMouvement><img src="images/boutonAjouter.jpg" height = 35 px></a></h2>
