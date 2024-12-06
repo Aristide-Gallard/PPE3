@@ -28,6 +28,17 @@ switch($action)
             break;
         }
 
+    case 'confirmAjouterMouvement':
+        {
+            $result = $pdo->ajoutMouvement($_POST['nbPlaces'], $_POST['numV'], $_POST['distance'], $_POST['heureD'], $_POST['duree'], $_POST['heureA'], $_POST['Id_AEROPORT'], $_POST['Id_AEROPORT_1'], $_POST['Id_AVION']);
+    
+            if ($result) {
+                echo "Mouvement ajouté avec succès.";
+            } else {
+                echo "Erreur lors de l'ajout du mouvement.";
+            }
+           include("vues/v_gestionMouvement.php");
+        }
 
     case 'modifierMouvement':
         {

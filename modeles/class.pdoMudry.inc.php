@@ -86,24 +86,84 @@ public static function getAeroports(){
  *
  * @return// le tableau associatif des avions 
 */
-    public static function getModeles(){
-        $req = "SELECT * FROM modele";
-        $res = PdoMudry::$monPdo->query($req);
-        $lesLignes = $res->fetchAll();
-		return $lesLignes;
-    }
+public static function getModeles(){
+	$req = "SELECT * FROM modele";
+	$res = PdoMudry::$monPdo->query($req);
+	$lesLignes = $res->fetchAll();
+	return $lesLignes;
+}
 
 /**
  * Retourne tous les avions sous forme d'un tableau associatif
  *
  * @return// le tableau associatif des avions 
 */
-    public static function getAvions(){
-        $req = "SELECT avion.Id_AVION, avion.code, avion.numSerie, modele.Id_MODELE, modele.libelle FROM avion 
-INNER JOIN modele ON avion.Id_MODELE = modele.Id_MODELE";
-        $res = PdoMudry::$monPdo->query($req);
-        return $res->fetchAll();
-    }
+public static function getAvions(){
+	$req = "SELECT avion.Id_AVION, avion.code, avion.numSerie, modele.Id_MODELE, modele.libelle FROM avion 
+	INNER JOIN modele ON avion.Id_MODELE = modele.Id_MODELE";
+	$res = PdoMudry::$monPdo->query($req);
+	return $res->fetchAll();
+}
+
+
+
+
+/**
+ * Ajoute un mouvement à la bdd
+ */
+
+ public static function ajoutMouvement($nbPlace,$distance,$heureD,$duree,$heureA,$Id_AEROPORT,$Id_AEROPORT_1,$Id_AVION ){
+
+	$req = "INSERT INTO mouvement (nbPlace, distance, heureD, duree, heureA, Id_AEROPORT, Id_AEROPORT_1, Id_AVION) 
+	VALUES (:nbPlace, :distance, :heureD, :duree, :heureA, :Id_AEROPORT, :Id_AEROPORT_1, :Id_AVION)";
+
+	$req = PdoMudry::$monPdo->prepare($req);
+	$req->bindParam(':nbPlace', $nbPlace);
+	$req->bindParam(':distance', $distance);
+	$req->bindParam(':heureD', $heureD);
+	$req->bindParam(':duree', $duree);
+	$req->bindParam(':heureA', $heureA);
+	$req->bindParam(':Id_AEROPORT', $Id_AEROPORT);
+	$req->bindParam(':Id_AEROPORT_1', $Id_AEROPORT_1);
+	$req->bindParam(':Id_AVION', $Id_AVION);
+	$res = $req->execute();
+
+	if ($res) {
+	echo "Insertion réussie";
+	} else {
+	echo "Erreur lors de l'insertion";
+	}
+}
+
+/**
+ * Modification un mouvement à la bdd
+ */
+
+ public static function modifMouvement($nbPlace,$distance,$heureD,$duree,$heureA,$Id_AEROPORT,$Id_AEROPORT_1,$Id_AVION ){
+
+	$req = "UPDATE mouvement (nbPlace, distance, heureD, duree, heureA, Id_AEROPORT, Id_AEROPORT_1, Id_AVION) 
+	set (:nbPlace, :distance, :heureD, :duree, :heureA, :Id_AEROPORT, :Id_AEROPORT_1, :Id_AVION)";
+
+	$req = PdoMudry::$monPdo->prepare($req);
+	$req->bindParam(':nbPlace', $nbPlace);
+	$req->bindParam(':distance', $distance);
+	$req->bindParam(':heureD', $heureD);
+	$req->bindParam(':duree', $duree);
+	$req->bindParam(':heureA', $heureA);
+	$req->bindParam(':Id_AEROPORT', $Id_AEROPORT);
+	$req->bindParam(':Id_AEROPORT_1', $Id_AEROPORT_1);
+	$req->bindParam(':Id_AVION', $Id_AVION);
+	$res = $req->execute();
+
+	if ($res) {
+	echo "Insertion réussie";
+	} else {
+	echo "Erreur lors de l'insertion";
+	}
+}
+
+
+
 
 
 }
