@@ -139,6 +139,38 @@ INNER JOIN modele ON avion.Id_MODELE = modele.Id_MODELE";
         return $ligne;
     }
 
+    public static function getlePersonnelC($num)
+    {
+        $req = "SELECT personnel.Id_PERSONNEL, parle.Id_LANGUE,personnel.tel,langue.nom FROM personnel
+INNER JOIN parle ON personnel.Id_PERSONNEL = parle.Id_PERSONNEL
+INNER JOIN langue on parle.Id_LANGUE = langue.Id_LANGUE
+  WHERE personnel.id_PERSONNEL = :num";
+        $res = PdoMudry::$monPdo->prepare($req);
+        $res->bindValue(":num", $num, PDO::PARAM_INT);
+        $res->execute();
+        $ligne = $res->fetch(PDO::FETCH_ASSOC);
+        return $ligne;
+    }
+// Fichier : modeles/PdoMudry.php
+
+public function getToutesLesLangues()
+{
+    $query = 'SELECT * FROM langue';  // Récupérer toutes les langues
+    $res = PdoMudry::$monPdo->query($query);
+    return $res->fetchAll(PDO::FETCH_ASSOC);
+}
+
+    public function getLanguesParPersonnel($idPersonnel) {
+        $req = PdoMudry::$monPdo->prepare('
+            SELECT l.Id_LANGUE, l.nom 
+            FROM parle p
+            INNER JOIN langue l ON p.Id_LANGUE = l.Id_LANGUE
+            WHERE p.Id_PERSONNEL = :idPersonnel
+        ');
+        $req->bindValue(':idPersonnel', $idPersonnel, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }    
     /**
      * Créer un Personnel 
      *
@@ -257,14 +289,14 @@ public function creerPersonnelC($tel, $langues)
         $res->bindValue(':num', $num, PDO::PARAM_INT);
         $res->execute();
 
-        $res = PdoMudry::$monPdo->prepare('UPDATE technique SET heureV = :heureV WHERE id_PERSONNEL = :num');
+        $res = PdoMudry::$monPdo->prepare('UPDATE technique SET langue = :langue WHERE id_PERSONNEL = :num');
         $res->bindValue(':num', $num, PDO::PARAM_INT);
         $res->bindValue(':heureV', $heureV, PDO::PARAM_INT);
         $res->execute();
 
     }
 
-    public function modificationPersonnelC($tel, $num)
+    public function modificationPersonnelC($tel, $num,$langues)
     {
 
         $res = PdoMudry::$monPdo->prepare('UPDATE personnel SET tel = :tel WHERE id_PERSONNEL = :num');
@@ -272,6 +304,39 @@ public function creerPersonnelC($tel, $langues)
         $res->bindValue(':num', $num, PDO::PARAM_INT);
         $res->execute();
 
+        $res = PdoMudry::$monPdo->prepare('UPDATE commercial SET langue = :langue WHERE id_PERSONNEL = :num');
+        $res->bindValue(':num', $num, PDO::PARAM_INT);
+        $res->bindValue(':heureV', $langues, PDO::PARAM_INT);
+        $res->execute();
+
+
     }
+    public function updateLanguesPersonnel($num, $langues) {
+        // Supprimer les langues existantes
+        $reqDelete = PdoMudry::$monPdo->prepare('DELETE FROM parle WHERE Id_PERSONNEL = :num');
+        $reqDelete->bindValue(':num', $num, PDO::PARAM_INT);
+        $reqDelete->execute();
+    
+        // Ajouter les nouvelles langues
+        $reqInsert = PdoMudry::$monPdo->prepare('INSERT INTO parle (Id_PERSONNEL, Id_LANGUE) VALUES (:num, :langue)');
+        foreach ($langues as $langue) {
+            $reqInsert->bindValue(':num', $num, PDO::PARAM_INT);
+            $reqInsert->bindValue(':langue', $langue, PDO::PARAM_INT);
+            $reqInsert->execute();
+        }
+    }
+    // Fichier : modeles/PdoMudry.php
+
+public function ajouterLangueAuPersonnel($num, $langueId)
+{
+    // Ajout de la langue dans la table 'parle'
+    $query = 'INSERT INTO parle (Id_PERSONNEL, Id_LANGUE) VALUES (:num, :langueId)';
+    $res = PdoMudry::$monPdo->prepare($query);
+    $res->bindValue(':num', $num, PDO::PARAM_INT);  // Bind de l'ID du personnel
+    $res->bindValue(':langueId', $langueId, PDO::PARAM_INT);  // Bind de l'ID de la langue
+    $res->execute();
+}
+
+    
 }
 
