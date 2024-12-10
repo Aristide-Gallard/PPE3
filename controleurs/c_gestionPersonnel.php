@@ -19,7 +19,8 @@ switch ($action) {
 			$id_LANGUE = $_POST['langue'];
 		}
 		$idPersonnel = $pdo->creerPersonnelC($tel,$id_LANGUE);
-		$LesPersonnels = $pdo->getlesPersonnelsC();
+		$LesPersonnelsC = $pdo->getlesPersonnelsC();
+		$LesPersonnelsT = $pdo->getlesPersonnelsT();		
 		include("vues/v_Personnel.php");
 		break;
 	}
@@ -35,7 +36,8 @@ switch ($action) {
 		$tel = $_POST['tel'];
 		$heureV = $_POST['heureV'];
 		$pdo->creerPersonnelT($tel, $heureV);
-		$LesPersonnels = $pdo->getlesPersonnelsT();
+		$LesPersonnelsC = $pdo->getlesPersonnelsC();
+		$LesPersonnelsT = $pdo->getlesPersonnelsT();		
 		include("vues/v_Personnel.php");
 		break;
 
@@ -56,6 +58,8 @@ switch ($action) {
 			$langues = isset($_POST['langue']) ? $_POST['langue'] : []; // Langues sélectionnées
 			// Rediriger vers la liste des personnels
 			$LesPersonnels = $pdo->getlesPersonnelsC();
+			$LesPersonnelsC = $pdo->getlesPersonnelsC();
+			$LesPersonnelsT = $pdo->getlesPersonnelsT();
 			include("vues/v_Personnel.php");
 			break;
 		}
