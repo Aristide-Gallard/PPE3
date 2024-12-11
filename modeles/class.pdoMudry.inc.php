@@ -191,10 +191,18 @@ public function getToutesLesLangues()
 public function creerPersonnelC($tel, $langues)
 {
     
-    $req = 'INSERT INTO personnel (tel) VALUES (:tel)';
-    $req = PdoMudry::$monPdo->prepare($req);
-    $req->bindValue(':tel', $tel, PDO::PARAM_STR);
-    $req->execute();
+    try {
+        $req = 'INSERT INTO personnel (tel) VALUES (:tel)';
+        $req = PdoMudry::$monPdo->prepare($req);
+        $req->bindValue(':tel', $tel, PDO::PARAM_STR);
+        $req->execute();
+        echo "Le numéro $tel a été ajouté avec succès.";
+    } catch (PDOException $e) {
+        echo ($e->getCode() == 23000) 
+            ? "Erreur : Le numéro $tel existe déjà." 
+            : "Erreur : " . $e->getMessage();
+    }
+    
 
     
     $idPersonnel = PdoMudry::$monPdo->lastInsertId();
@@ -220,11 +228,18 @@ public function creerPersonnelC($tel, $langues)
 
     public function creerPersonnelT($tel, $heureV)
     {
-        
+        try {
         $req = 'INSERT INTO personnel (tel) VALUES (:tel)';
         $req = PdoMudry::$monPdo->prepare($req);
         $req->bindValue(':tel', $tel, PDO::PARAM_STR);
         $req->execute();
+        echo "Le numéro $tel a été ajouté avec succès.";
+    } catch (PDOException $e) {
+        echo ($e->getCode() == 23000) 
+            ? "Erreur : Le numéro $tel existe déjà." 
+            : "Erreur : " . $e->getMessage();
+    }
+    
     
         
         $idPersonnel = PdoMudry::$monPdo->lastInsertId();
@@ -299,10 +314,10 @@ public function creerPersonnelC($tel, $langues)
     public function modificationPersonnelC($tel, $num, $langues)
 {
     // Mise à jour du téléphone
-    $stmt = PdoMudry::$monPdo->prepare('UPDATE personnel SET tel = :tel WHERE id_PERSONNEL = :num');
-    $stmt->bindValue(':tel', $tel, PDO::PARAM_STR);
-    $stmt->bindValue(':num', $num, PDO::PARAM_INT);
-    $stmt->execute();
+    $res = PdoMudry::$monPdo->prepare('UPDATE personnel SET tel = :tel WHERE id_PERSONNEL = :num');
+    $res->bindValue(':tel', $tel, PDO::PARAM_STR);
+    $res->bindValue(':num', $num, PDO::PARAM_INT);
+    $res->execute();
 
     $res = PdoMudry::$monPdo->prepare('UPDATE commercial SET Id_PERSONNEL = :num WHERE id_PERSONNEL = :num');
     $res->bindValue(':num', $num, PDO::PARAM_INT);
@@ -312,16 +327,16 @@ public function creerPersonnelC($tel, $langues)
 
 
     // Suppression des langues existantes
-    $stmt = PdoMudry::$monPdo->prepare('DELETE FROM parle WHERE id_PERSONNEL = :num');
-    $stmt->bindValue(':num', $num, PDO::PARAM_INT);
-    $stmt->execute();
+    $res = PdoMudry::$monPdo->prepare('DELETE FROM parle WHERE id_PERSONNEL = :num');
+    $res->bindValue(':num', $num, PDO::PARAM_INT);
+    $res->execute();
 
     // Ajout des nouvelles langues
     foreach ($langues as $langueId) {
-        $stmt = PdoMudry::$monPdo->prepare('INSERT INTO parle (id_PERSONNEL, Id_LANGUE) VALUES (:num, :langueId)');
-        $stmt->bindValue(':num', $num, PDO::PARAM_INT);
-        $stmt->bindValue(':langueId', $langueId, PDO::PARAM_INT);
-        $stmt->execute();
+        $res = PdoMudry::$monPdo->prepare('INSERT INTO parle (id_PERSONNEL, Id_LANGUE) VALUES (:num, :langueId)');
+        $res->bindValue(':num', $num, PDO::PARAM_INT);
+        $res->bindValue(':langueId', $langueId, PDO::PARAM_INT);
+        $res->execute();
     }
 }
     public function updateLanguesPersonnel($num, $langues) {
@@ -348,6 +363,6 @@ public function creerPersonnelC($tel, $langues)
         $res->execute();
     }
     
-    
+
 }
 

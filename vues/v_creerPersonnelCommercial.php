@@ -1,7 +1,4 @@
-<div id="mudry">
-    Ceci est un accueil
-    <a href="index.php?uc=flotte&action=voirModeles">voirModeles</a>
-    <a href="index.php?uc=Personnel&action=voirPersonnel">voirPersonnel</a>
+
     
     <form method="POST" action="index.php?uc=Personnel&action=confirmCreatPersonnelC">
         <label for="tel">Numéro de téléphone :</label>

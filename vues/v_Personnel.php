@@ -6,12 +6,10 @@
     <link rel="stylesheet" href="" />
 </head>
 <body>
-<div id="mudry">
-    Ceci est un accueil
-    <a href="index.php?uc=flotte&action=voirModeles">voirModeles</a>
-    <a href="index.php?uc=Personnel&action=voirPersonnel">voirPersonnel</a>
 
-    <h1>Liste des personnels commerciaux</h1>
+
+    <h1>Liste des personnels commerciaux    <a href="index.php?uc=Personnel&action=creationPersonnelC"><img src="Images/boutonAjouter.jpg" height = 35 px></a></a></h1>
+
 <?php if (isset($LesPersonnelsC) && !empty($LesPersonnelsC)): ?>
     <table class="table table-striped table-hover">
         <thead>
@@ -49,8 +47,8 @@
     <p>Aucun personnel disponible.</p>
 <?php endif; ?>
 
-    <a href="index.php?uc=Personnel&action=creationPersonnelC">créer personnel Commercial</a>
     <br><br>
+    <h1>Liste des personnels Techniques <a href="index.php?uc=Personnel&action=creationPersonnelT"><img src="Images/boutonAjouter.jpg" height = 35 px></a></a></a></h1>
     <?php if (isset($LesPersonnelsT) && !empty($LesPersonnelsT)): ?>
         <table class="table table-striped table-hover">
             <thead>
@@ -91,7 +89,7 @@
     <?php else: ?>
         <p>Aucun personnel disponible.</p>
     <?php endif; ?>
-    <a href="index.php?uc=Personnel&action=creationPersonnelT">créer personnel Technique</a>
+    
     <!-- Formulaire pour créer un nouveau personnel -->
 </body>
 </html>

@@ -22,7 +22,6 @@ switch ($action) {
         if ($tel && $id_LANGUE) {
             $pdo->creerPersonnelC($tel, $id_LANGUE);
         }
-
         $LesPersonnelsC = $pdo->getlesPersonnelsC();
         $LesPersonnelsT = $pdo->getlesPersonnelsT();
         include("vues/v_Personnel.php");
