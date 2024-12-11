@@ -304,6 +304,13 @@ public function creerPersonnelC($tel, $langues)
     $stmt->bindValue(':num', $num, PDO::PARAM_INT);
     $stmt->execute();
 
+    $res = PdoMudry::$monPdo->prepare('UPDATE commercial SET Id_PERSONNEL = :num WHERE id_PERSONNEL = :num');
+    $res->bindValue(':num', $num, PDO::PARAM_INT);
+ 
+    $res->execute();
+
+
+
     // Suppression des langues existantes
     $stmt = PdoMudry::$monPdo->prepare('DELETE FROM parle WHERE id_PERSONNEL = :num');
     $stmt->bindValue(':num', $num, PDO::PARAM_INT);

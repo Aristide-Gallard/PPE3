@@ -1,4 +1,10 @@
 <!-- Formulaire pour ajouter des langues via des cases à cocher -->
+<?php
+       $LesPersonnels = $pdo->getlePersonnelC($num);
+      
+        $tel = $LesPersonnels['tel'];  
+               
+        ?> 
 <form action="index.php?uc=Personnel&action=ajouterLangue" method="post">
     <label for="telP">Téléphone :</label>
     <input type="text" id="telP" name="tel" value="<?php echo ($tel); ?>" required>
