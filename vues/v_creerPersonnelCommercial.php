@@ -1,5 +1,6 @@
 
-    
+<h1>Creation du Personnel commercial</h1>
+
     <form method="POST" action="index.php?uc=Personnel&action=confirmCreatPersonnelC">
         <label for="tel">Numéro de téléphone :</label>
         <input type="text" id="tel" name="tel" required>
@@ -18,5 +19,6 @@
         </div>
 
         <button type="submit">Créer personnel commercial</button>
+        <input type="reset" value="Annuler" name="annuler">
     </form>
 </div>
