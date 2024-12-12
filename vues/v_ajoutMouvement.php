@@ -1,6 +1,3 @@
-<div id="creationCategorie">
-<form method="POST" action="index.php?uc=vol&action=confirmAjouterMouvement">
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,32 +11,31 @@
         <a href="index.php?uc=vol&action=gererMouvement">Retour</a>
         <h1>Ajout d'un mouvement </h1>
        
-
-        <form>
+        <form method="POST" action="index.php?uc=vol&action=confirmAjouterMouvement">
             <div class="form-row">
                 <div class="form-group">
-                    <label for="flightNumber">N° du vol</label>
+                    <label>N° du vol</label>
                     <input type="text" class="form-control" id="numV" name="numV" placeholder="Entrez un nombre" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="flightNumber">Nombre de places</label>
+                    <label>Nombre de places</label>
                     <input type="number" class="form-control" id="nbPlace" name="nbPlace" placeholder="Entrez un nombre" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="flightNumber">Distance (km)</label>
+                    <label>Distance (km)</label>
                     <input type="number" class="form-control" id="distance" name="distance" placeholder="Entrez un nombre" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="flightNumber">Durée (minute)</label>a
-                    <input type="number" class="form-control" id="duree" name="duree" placeholder="Entrez un nombre" required>
                 </div>
 
                 <div class="form-group">
                     <label for="departureDate">Heure de départ</label>
                     <input type="time" class="form-control" id="heureD" name="heureD" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Durée (minute)</label>
+                    <input type="number" class="form-control" id="duree" name="duree" placeholder="Entrez un nombre" required>
                 </div>
 
                 <div class="form-group">
@@ -77,10 +73,9 @@
                     </select>
 
             </div>
-            <button type="submit">Valider</button>
+            <button type="submit" class="btn btn-primary">Valider</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='index.php?uc=vol&action=gererMouvement'">Annuler</button>
         </form>
-
     </div>
 
 </form>
-</div>

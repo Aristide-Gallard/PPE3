@@ -1,6 +1,4 @@
 <div id="gestionMouvement">
-<a href="index.php?uc=accueil" class="button">Retour</a>
-Ceci est la gestion des vols
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +6,8 @@ Ceci est la gestion des vols
     <title>Tableau de la gestion des vols</title>
 </head>
 <body>
+
+<h1>Gestion des vols</h1>
 
 <div class="container mt-5">
     <h2>Liste des vols <a href=index.php?uc=vol&action=ajouterMouvement><img src="images/boutonAjouter.jpg" height = 35 px></a></h2>
@@ -17,8 +17,8 @@ Ceci est la gestion des vols
                 <th>n° vol</th>
                 <th>nombre de places</th>
                 <th>distance</th>
-                <th>durée</th>
                 <th>heure de départ</th>
+                <th>durée</th>
                 <th>heure d'arrivée</th>
                 <th>aéroport de départ</th>
                 <th>aéroport d'arrivée</th>
@@ -31,17 +31,17 @@ Ceci est la gestion des vols
             <?php if (!empty($mouvements)): ?>
                 <?php foreach ($mouvements as $mouvement): ?>
                     <tr>
-                        <td><?= htmlspecialchars($mouvement['numV']) ?></td>
-                        <td><?= htmlspecialchars($mouvement['nbPlace']) ?></td>
-                        <td><?= htmlspecialchars($mouvement['distance']) ?></td>
-                        <td><?= htmlspecialchars($mouvement['heureD']) ?></td>
-                        <td><?= htmlspecialchars($mouvement['duree']) ?></td>
-                        <td><?= htmlspecialchars($mouvement['heureA']) ?></td>
-                        <td><?= htmlspecialchars($mouvement['Id_AEROPORT']) ?></td>
-                        <td><?= htmlspecialchars($mouvement['Id_AEROPORT_1']) ?></td>
-                        <td><?= htmlspecialchars($mouvement['Id_AVION']) ?></td>
-                        <td><a href=index.php?uc=vol&action=modifierMouvement><img src="images/modif.jpg" height = 35 px></a></td>
-                        <td><a href=index.php?uc=vol&action=supprimerMouvement><img src="images/supp.png" height = 35 px></a></td>
+                        <td><?= ($mouvement['numV']) ?></td>
+                        <td><?= ($mouvement['nbPlace']) ?></td>
+                        <td><?= ($mouvement['distance']) ?></td>
+                        <td><?= ($mouvement['heureD']) ?></td>
+                        <td><?= ($mouvement['duree']) ?></td>
+                        <td><?= ($mouvement['heureA']) ?></td>
+                        <td><?= ($mouvement['aeroportD']) ?></td>
+                        <td><?= ($mouvement['aeroportA']) ?></td>
+                        <td><?= ($mouvement['code']) ?></td>
+                        <td><a href="index.php?uc=vol&action=modifierMouvement&id=<?php echo $mouvement['Id_MOUVEMENT']; ?>"><img src="images/modif.jpg" height = 35 px></a></td>
+                        <td><a href="index.php?uc=vol&action=supprimerMouvement&id=<?php echo $mouvement['Id_MOUVEMENT']; ?>"><img src="images/supp.png" height = 35 px></a></td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>

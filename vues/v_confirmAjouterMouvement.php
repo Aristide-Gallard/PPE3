@@ -15,5 +15,6 @@
     <p>Aéroport de départ : <?php echo ($_POST['Id_AEROPORT']); ?></p>
     <p>Aéroport d'arrivée : <?php echo ($_POST['Id_AEROPORT_1']); ?></p>
     <p>Avion : <?php echo ($_POST['Id_AVION']); ?></p>
+    <a type="button" class="btn btn-secondary" onclick="window.location.href='index.php?uc=vol&action=gererMouvement'">Retour</a>
 </body>
 </html>

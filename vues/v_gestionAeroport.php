@@ -1,6 +1,5 @@
 <div id="gestionAeroport">
 <a href="index.php?uc=accueil" class="button">Retour</a>
-Ceci est la gestion des aéroports
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +9,15 @@ Ceci est la gestion des aéroports
 <body>
 
 <div class="container mt-5">
-    <h2>Liste des aéroports</h2>
-    <table class="table table-striped">
+<h2>Liste des aéroports <a href=index.php?uc=vol&action=ajouterAeroport><img src="images/boutonAjouter.jpg" height = 35 px></a></h2>
+<table class="table table-striped">
 
         <thead>
             <tr>
                 <th>n° aita</th>
                 <th>nom</th>
-                <th>latitude</th>
-                <th>longitude</th>
+                <th>latitude (en °)</th>
+                <th>longitude (en °)</th>
             </tr>
         </thead>
 
@@ -26,10 +25,12 @@ Ceci est la gestion des aéroports
             <?php if (!empty($aeroports)): ?>
                 <?php foreach ($aeroports as $aeroport): ?>
                     <tr>
-                        <td><?= htmlspecialchars($aeroport['aita']) ?></td>
-                        <td><?= htmlspecialchars($aeroport['nom']) ?></td>
-                        <td><?= htmlspecialchars($aeroport['latitude']) ?></td>
-                        <td><?= htmlspecialchars($aeroport['longitude']) ?></td>
+                        <td><?= ($aeroport['aita']) ?></td>
+                        <td><?= ($aeroport['nom']) ?></td>
+                        <td><?= ($aeroport['latitude']) ?></td>
+                        <td><?= ($aeroport['longitude']) ?></td>
+                        <td><a href="index.php?uc=vol&action=modifierAeroport&id=<?php echo $aeroport['Id_AEROPORT']; ?>"><img src="images/modif.jpg" height = 35 px></a></td>
+                        <td><a href="index.php?uc=vol&action=supprimerAeroport&id=<?php echo $aeroport['Id_AEROPORT']; ?>"><img src="images/supp.png" height = 35 px></a></td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
